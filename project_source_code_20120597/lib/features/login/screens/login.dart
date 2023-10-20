@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile_toji/commons/const_var.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class LoginScreenState extends State<LoginScreen> {
                     "Say hello to your English tutors",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Color.fromARGB(255, 0, 113, 240),
+                        color: primaryColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 30),
                   )),
@@ -50,17 +51,15 @@ class LoginScreenState extends State<LoginScreen> {
                           decoration: InputDecoration(
                             labelText: 'Email Address',
                             labelStyle: TextStyle(
-                              color: Color.fromARGB(255, 0, 113, 240),
+                              color: primaryColor,
                             ),
                             focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 0, 113, 240)),
+                                borderSide: BorderSide(color: primaryColor),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(12)),
                                 gapPadding: 1),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 0, 113, 240)),
+                                borderSide: BorderSide(color: primaryColor),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(12)),
                                 gapPadding: 1),
@@ -74,19 +73,21 @@ class LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 width: double.infinity,
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(15, 5, 0, 5),
-                  child: Text(
-                    'Forgot password?',
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 0, 113, 240),
-                      fontSize: 16,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
+                    padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: const Text(
+                        'Forgot password?',
+                        style: TextStyle(
+                          color: primaryColor,
+                          fontSize: 16,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    )),
               ),
               SizedBox(
                 width: double.infinity,
@@ -94,12 +95,12 @@ class LoginScreenState extends State<LoginScreen> {
                     padding: const EdgeInsets.fromLTRB(10, 5, 10, 25),
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromARGB(255, 0, 113, 240)),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(primaryColor),
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0), 
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
                         ),
                       ),
@@ -109,14 +110,27 @@ class LoginScreenState extends State<LoginScreen> {
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     )),
+              ),
+              const Padding(
+                  padding: EdgeInsets.fromLTRB(10, 5, 10, 25),
+                  child: Text(
+                    'Or continue with',
+                    style: TextStyle(fontSize: 16),
+                  )),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 25),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    ImageIconWidthRoundBorder(imageIcon: Image.asset('assets/login/img_facebook.png'))
+                  ],
+                ),
               )
             ]),
       ),
     ));
   }
 }
-
-
 
 /* #region PasswordTextField */
 class PasswordTextField extends StatefulWidget {
@@ -144,14 +158,14 @@ class PasswordTextFieldState extends State<PasswordTextField> {
         decoration: InputDecoration(
           labelText: 'Password',
           labelStyle: const TextStyle(
-            color: Color.fromARGB(255, 0, 113, 240),
+            color: primaryColor,
           ),
           focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Color.fromARGB(255, 0, 113, 240)),
+              borderSide: BorderSide(color: primaryColor),
               borderRadius: BorderRadius.all(Radius.circular(12)),
               gapPadding: 1),
           border: const OutlineInputBorder(
-              borderSide: BorderSide(color: Color.fromARGB(255, 0, 113, 240)),
+              borderSide: BorderSide(color: primaryColor),
               borderRadius: BorderRadius.all(Radius.circular(12)),
               gapPadding: 1),
           contentPadding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -163,3 +177,42 @@ class PasswordTextFieldState extends State<PasswordTextField> {
   }
 }
 /* #endregion */
+
+/* #region Icon */
+// ignore: must_be_immutable
+class ImageIconWidthRoundBorder extends StatelessWidget {
+  Image imageIcon;
+  final double iconSize;
+  final Color colorBorder;
+  final double widthOfBoder;
+  final double buttonSize;
+
+  ImageIconWidthRoundBorder(
+      {super.key,
+      required this.imageIcon,
+      this.iconSize = 25,
+      this.colorBorder = primaryColor,
+      this.widthOfBoder = 1,
+      this.buttonSize = 40});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        width: buttonSize,
+        height: buttonSize,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(
+            color: colorBorder,
+            width: widthOfBoder,
+          ),
+        ),
+        child: Center(
+          child: imageIcon
+        ),
+      ),
+    );
+  }
+} /* #endregion */
