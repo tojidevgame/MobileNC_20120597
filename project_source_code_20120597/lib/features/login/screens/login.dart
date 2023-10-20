@@ -20,8 +20,12 @@ class LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 40, 0, 40),
-                  child: Image.asset('assets/login/img_login.png')),
+                padding: const EdgeInsets.fromLTRB(0, 40, 0, 40),
+                child: SizedBox(
+                    height: 100,
+                    width: 100,
+                    child: Image.asset('assets/login/img_login.png')),
+              ),
               const Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: Text(
@@ -47,6 +51,7 @@ class LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: EdgeInsets.fromLTRB(0, 5, 0, 10),
                       child: TextField(
+                          autocorrect: false,
                           enableSuggestions: false,
                           decoration: InputDecoration(
                             labelText: 'Email Address',
@@ -120,9 +125,43 @@ class LoginScreenState extends State<LoginScreen> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 25),
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    ImageIconWidthRoundBorder(imageIcon: Image.asset('assets/login/img_facebook.png'))
+                    ImageIconWidthRoundBorder(
+                      imageIcon: Image.asset('assets/login/img_facebook.png'),
+                      onAction: () {},
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                        child: ImageIconWidthRoundBorder(
+                          imageIcon: Image.asset('assets/login/img_search.png'),
+                          iconSize: 20,
+                          onAction: () {},
+                        )),
+                    ImageIconWidthRoundBorder(
+                      imageIcon: Image.asset('assets/login/img_smartphone.png'),
+                      iconSize: 20,
+                      onAction: () {},
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text('No account? '),
+                    GestureDetector(
+                      onTap: () {},
+                      child: const Text(
+                        'Register',
+                        style: TextStyle(
+                          color: primaryColor,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
                   ],
                 ),
               )
@@ -186,6 +225,7 @@ class ImageIconWidthRoundBorder extends StatelessWidget {
   final Color colorBorder;
   final double widthOfBoder;
   final double buttonSize;
+  final VoidCallback onAction;
 
   ImageIconWidthRoundBorder(
       {super.key,
@@ -193,12 +233,13 @@ class ImageIconWidthRoundBorder extends StatelessWidget {
       this.iconSize = 25,
       this.colorBorder = primaryColor,
       this.widthOfBoder = 1,
-      this.buttonSize = 40});
+      this.buttonSize = 40,
+      required this.onAction});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onAction,
       child: Container(
         width: buttonSize,
         height: buttonSize,
@@ -210,8 +251,8 @@ class ImageIconWidthRoundBorder extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: imageIcon
-        ),
+            child:
+                SizedBox(height: iconSize, width: iconSize, child: imageIcon)),
       ),
     );
   }
