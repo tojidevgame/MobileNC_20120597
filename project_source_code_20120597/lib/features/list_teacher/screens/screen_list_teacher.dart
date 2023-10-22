@@ -213,8 +213,15 @@ class GeneralInfoTutor extends StatefulWidget {
     return GeneralInfoTutorState(
         avatar: Image.asset('assets/common/img_user.png'),
         name: 'Not Found',
-        rate: 4,
-        cardEnglishTypeData: ['English1', 'English2', 'English3']);
+        rate: 3,
+        cardEnglishTypeData: [
+          'EnglishToji',
+          'English2',
+          'English3',
+          'English1',
+          'English2',
+          'English3'
+        ]);
   }
 }
 
@@ -254,16 +261,20 @@ class GeneralInfoTutorState extends State<GeneralInfoTutor> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Expanded(flex: 1, child: Container()),
                       Expanded(
-                          flex: 4,
+                          flex: 6,
                           child: Column(
                             children: <Widget>[
-                              SizedBox(
-                                height: 80,
-                                width: 80,
-                                child: avatar,
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                child: SizedBox(
+                                  height: 80,
+                                  width: 80,
+                                  child: avatar,
+                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(1),
@@ -311,6 +322,7 @@ class GeneralInfoTutorState extends State<GeneralInfoTutor> {
                               Padding(
                                 padding: const EdgeInsets.all(1),
                                 child: Wrap(
+                                  alignment: WrapAlignment.center,
                                   spacing: 5,
                                   runSpacing: 5,
                                   children: cardEnglishTypeData
@@ -320,10 +332,62 @@ class GeneralInfoTutorState extends State<GeneralInfoTutor> {
                                           ))
                                       .toList(),
                                 ),
-                              )
+                              ),
+                              const Padding(
+                                  padding: EdgeInsets.all(1),
+                                  child: Text(
+                                    'I am passionate about running and fitness, I often compete in trail/mountain running events and I love pushing myself. I am training to one day take part in ultra-endurance events.',
+                                    textAlign: TextAlign.center,
+                                  )),
+                              Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 10),
+                                  child: Container(
+                                    width: 120,
+                                    height: 45,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color:
+                                            primaryColor, // Color of the border
+                                        width: 1.5, // Width of the border
+                                      ),
+                                      borderRadius: BorderRadius.circular(
+                                          16), // Border radius for rounded corners
+                                    ),
+                                    child: TextButton(
+                                      onPressed: () {},
+                                      child: const Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Icon(
+                                            Icons.calendar_month,
+                                            size: 25,
+                                            color: primaryColor,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsets.fromLTRB(8, 0, 0, 0),
+                                            child: Text(
+                                              'Đặt lịch',
+                                              style: TextStyle(
+                                                  color: primaryColor,
+                                                  fontSize: 16),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ))
                             ],
                           )), // Avatar
-                      Expanded(flex: 1, child: Container()), // Heart
+                      const Expanded(
+                          flex: 1,
+                          child: Padding(
+                              padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
+                              child: Icon(
+                                Icons.favorite_border,
+                                color: primaryColor,
+                              ))), // Heart
                     ],
                   ),
                 ),
