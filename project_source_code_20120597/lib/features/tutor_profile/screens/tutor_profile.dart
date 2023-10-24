@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile_toji/commons/models/tutor_model.dart';
 import 'package:lettutor_mobile_toji/features/tutor_profile/ui_components/options_tutor_profile.dart';
+import 'package:lettutor_mobile_toji/features/tutor_profile/ui_components/specialize_info.dart';
 import 'package:lettutor_mobile_toji/features/tutor_profile/ui_components/tutor_main_info.dart';
 import 'package:lettutor_mobile_toji/features/tutor_profile/ui_components/video_controller.dart';
 
@@ -22,10 +23,12 @@ class TutorProfileState extends State<TutorProfile> {
       rate: 1,
       numberRate: 2,
       countryCode: 'US',
+      education: 'BA',
       language: ['English', 'Vietnamese'],
       specialized: ['specialized', 'hehe'],
-      interest: 'interest',
-      teachingExperience: 'teachingExperience',
+      videoPath: 'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+      interest: 'I loved the weather, the scenery and the laid-back lifestyle of the locals.',
+      teachingExperience: 'I have more than 10 years of teaching english experience',
       isFavourite: false);
 
   @override
@@ -40,7 +43,8 @@ class TutorProfileState extends State<TutorProfile> {
             children: [
               TutorMainInfo(tutor: tutorData as Tutor),
               const OptionsOnTutorProfile(),
-              VideoPlayerScreen(),
+              VideoPlayerScreen(tutor: tutorData as Tutor),
+              TutorSpecialInfo(tutor: tutorData as Tutor)
             ],
           ),
         )));
