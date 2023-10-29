@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile_toji/features/history/screens/history.dart';
+import 'package:lettutor_mobile_toji/features/schedule_set/screens/screen_schedule_set.dart';
 import 'package:lettutor_mobile_toji/features/tutor_profile/screens/tutor_profile.dart';
 
 void main() {
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const TutorProfile()
+      home: const History()
     );
   }
 }
