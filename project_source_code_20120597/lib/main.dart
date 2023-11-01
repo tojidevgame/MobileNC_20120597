@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile_toji/features/course_info/screens/course_info.dart';
 import 'package:lettutor_mobile_toji/features/history/screens/history.dart';
+import 'package:lettutor_mobile_toji/features/list_course/screens/list_course.dart';
 import 'package:lettutor_mobile_toji/features/schedule_set/screens/screen_schedule_set.dart';
 import 'package:lettutor_mobile_toji/features/tutor_profile/screens/tutor_profile.dart';
 
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const History()
+      home: CourseInfo()
     );
   }
 }
