@@ -19,11 +19,6 @@ class LessonDetailState extends State<LessonDetail> {
   @override
   void initState() {
     super.initState();
-    // createFileOfPdfUrl().then((f) {
-    //   setState(() {
-    //     remotePDFpath = f.path;
-    //   });
-    // });
   }
 
 
