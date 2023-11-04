@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile_toji/commons/const_var.dart';
+import 'package:lettutor_mobile_toji/features/list_teacher/screens/screen_list_teacher.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -109,7 +110,14 @@ class LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TutorScreen(),
+                          ),
+                        );
+                      },
                       child: const Text(
                         'LOGIN',
                         style: TextStyle(color: Colors.white, fontSize: 20),

@@ -1,7 +1,12 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile_toji/commons/components/appbar.dart';
+import 'package:lettutor_mobile_toji/commons/components/sidebar.dart';
 import 'package:lettutor_mobile_toji/commons/const_var.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:lettutor_mobile_toji/features/list_teacher/components/card_english_type.dart';
+import 'package:lettutor_mobile_toji/features/tutor_profile/screens/tutor_profile.dart';
 
 class TutorScreen extends StatefulWidget {
   const TutorScreen({Key? key}) : super(key: key);
@@ -13,6 +18,7 @@ class TutorScreen extends StatefulWidget {
 }
 
 class TutorScreenState extends State<TutorScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final List<String> cardEnglishTypeData = [
     'Tất cả',
     'Tiếng Anh cho trẻ em',
@@ -28,139 +34,149 @@ class TutorScreenState extends State<TutorScreen> {
     'TOEIC'
   ];
 
+  void _openDrawer() {
+    _scaffoldKey.currentState?.openDrawer();
+    print("Press");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: const SideBar(),
+        appBar: CustomAppBar(
+          onHamburgerTap: _openDrawer,
+        ),
         body: SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(
-              width: double.infinity,
-              height: 200,
-              child: Container(
-                color: primaryColor,
-                child: const Padding(
-                  padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        'The lesson is about to take place',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'The total number of hours you have studied is 507 hours and 30 minutes',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white, fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ),
-              )),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-            child: Container(
-                alignment: Alignment.topLeft,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                      child: Text(
-                        'Find a tutor',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                  width: double.infinity,
+                  height: 200,
+                  child: Container(
+                    color: primaryColor,
+                    child: const Padding(
+                      padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'The lesson is about to take place',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            'The total number of hours you have studied is 507 hours and 30 minutes',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.white, fontSize: 14),
+                          ),
+                        ],
                       ),
                     ),
-                    const TextField(
-                        autocorrect: false,
-                        enableSuggestions: false,
-                        decoration: InputDecoration(
-                          labelStyle: TextStyle(
-                            color: primaryColor,
+                  )),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: Container(
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        const Padding(
+                          padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                          child: Text(
+                            'Find a tutor',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
                           ),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: primaryColor),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12)),
-                              gapPadding: 0.5),
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: primaryColor),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12)),
-                              gapPadding: 1),
-                          contentPadding: EdgeInsets.fromLTRB(15, 0, 0, 0),
-                          hintText: 'Enter tutor name...',
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
-                      child: SizedBox(
-                        height: 50,
-                        child: DropdownButtonFormField<String>(
-                          decoration: const InputDecoration(
-                            hintText: 'Chọn quốc tịch gia sư',
-                            contentPadding: EdgeInsets.fromLTRB(15, 0, 0, 0),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: primaryColor),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(12)),
-                                gapPadding: 1),
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(color: primaryColor),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(12)),
-                                gapPadding: 1),
-                          ),
-                          items: const [
-                            DropdownMenuItem(
-                                value: '1', child: Text('Gia Sư Nước Ngoài')),
-                            DropdownMenuItem(
-                                value: '2', child: Text('Gia Sư Việt Nam')),
-                            DropdownMenuItem(
-                                value: '3',
-                                child: Text('Gia Sư Tiếng Anh Bản Ngữ')),
-                          ],
-                          onChanged: (value) {},
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 15, 0, 20),
-                      child: Wrap(
-                        spacing: 5,
-                        runSpacing: 5,
-                        children: cardEnglishTypeData
-                            .map((e) => CardEnglishType(
-                                  englishType: e,
-                                  onPressed: () {},
-                                ))
-                            .toList(),
-                      ),
-                    ),
-                    const Text(
-                      'Recommended tutors',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.all(1),
-                      child: GeneralInfoTutor(),
-                    )
-                  ],
-                )),
-          )
-        ],
-      ),
-    ));
+                        const TextField(
+                            autocorrect: false,
+                            enableSuggestions: false,
+                            decoration: InputDecoration(
+                              labelStyle: TextStyle(
+                                color: primaryColor,
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: primaryColor),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(12)),
+                                  gapPadding: 0.5),
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: primaryColor),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(12)),
+                                  gapPadding: 1),
+                              contentPadding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                              hintText: 'Enter tutor name...',
+                            )),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+                          child: SizedBox(
+                            height: 50,
+                            child: DropdownButtonFormField<String>(
+                              decoration: const InputDecoration(
+                                hintText: 'Chọn quốc tịch gia sư',
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(15, 0, 0, 0),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: primaryColor),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12)),
+                                    gapPadding: 1),
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide(color: primaryColor),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12)),
+                                    gapPadding: 1),
+                              ),
+                              items: const [
+                                DropdownMenuItem(
+                                    value: '1',
+                                    child: Text('Gia Sư Nước Ngoài')),
+                                DropdownMenuItem(
+                                    value: '2', child: Text('Gia Sư Việt Nam')),
+                                DropdownMenuItem(
+                                    value: '3',
+                                    child: Text('Gia Sư Tiếng Anh Bản Ngữ')),
+                              ],
+                              onChanged: (value) {},
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 15, 0, 20),
+                          child: Wrap(
+                            spacing: 5,
+                            runSpacing: 5,
+                            children: cardEnglishTypeData
+                                .map((e) => CardEnglishType(
+                                      englishType: e,
+                                      onPressed: () {},
+                                    ))
+                                .toList(),
+                          ),
+                        ),
+                        const Text(
+                          'Recommended tutors',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 25),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.all(1),
+                          child: GeneralInfoTutor(),
+                        )
+                      ],
+                    )),
+              )
+            ],
+          ),
+        ));
   }
 }
-
 
 class GeneralInfoTutor extends StatefulWidget {
   const GeneralInfoTutor({super.key});
@@ -298,7 +314,8 @@ class GeneralInfoTutorState extends State<GeneralInfoTutor> {
                                     textAlign: TextAlign.center,
                                   )),
                               Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 10),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 5, 0, 10),
                                   child: Container(
                                     width: 120,
                                     height: 45,
@@ -312,7 +329,15 @@ class GeneralInfoTutorState extends State<GeneralInfoTutor> {
                                           16), // Border radius for rounded corners
                                     ),
                                     child: TextButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                TutorProfile(),
+                                          ),
+                                        );
+                                      },
                                       child: const Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
