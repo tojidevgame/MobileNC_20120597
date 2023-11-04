@@ -13,7 +13,7 @@ class CourseInfoState extends State<CourseInfo> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           color: Colors.white,
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -48,14 +48,14 @@ class CourseInfoState extends State<CourseInfo> {
             ),
             Container(
               padding: EdgeInsets.only(top: 10),
-              child: Text(
+              child: const Text(
                 'Overview',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
             ),
             Container(
               padding: EdgeInsets.only(top: 10),
-              child: Row(
+              child: const Row(
                 children: [
                   Icon(
                     Icons.help_outline_outlined,
@@ -69,13 +69,13 @@ class CourseInfoState extends State<CourseInfo> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 10),
-              child: Text(
+              padding: const EdgeInsets.only(top: 10),
+              child: const Text(
                   'Our world is rapidly changing thanks to new technology, and the vocabulary needed to discuss modern life is evolving almost daily. In this course you will learn the most up-to-date terminology from expertly crafted lessons as well from your native-speaking tutor.'),
             ),
             Container(
-              padding: EdgeInsets.only(top: 10),
-              child: Row(
+              padding: const EdgeInsets.only(top: 10),
+              child: const Row(
                 children: [
                   Icon(
                     Icons.help_outline_outlined,
@@ -89,13 +89,13 @@ class CourseInfoState extends State<CourseInfo> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 10),
-              child: Text(
+              padding: const EdgeInsets.only(top: 10),
+              child: const Text(
                   'You will learn vocabulary related to timely topics like remote work, artificial intelligence, online privacy, and more. In addition to discussion questions, you will practice intermediate level speaking tasks such as using data to describe trends.'),
             ),
             Container(
-              padding: EdgeInsets.only(top: 10),
-              child: Text(
+              padding: const EdgeInsets.only(top: 10),
+              child: const Text(
                 'Required qualifications',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),

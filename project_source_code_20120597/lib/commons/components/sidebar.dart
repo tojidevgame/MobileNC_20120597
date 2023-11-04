@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile_toji/features/history/screens/history.dart';
+import 'package:lettutor_mobile_toji/features/list_course/screens/list_course.dart';
+import 'package:lettutor_mobile_toji/features/schedule_set/screens/screen_schedule_set.dart';
 
 class SideBar extends StatelessWidget {
   const SideBar({Key? key}) : super(key: key);
@@ -12,8 +15,12 @@ class SideBar extends StatelessWidget {
             title: Text('Schedule'),
             onTap: () {
               Navigator.pop(context);
-              // Điều hướng đến trang Schedule khi chọn mục này
-              // Thêm xử lý khi chọn mục Schedule
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ScheduleSet(),
+                ),
+              );
             },
           ),
           ListTile(
@@ -22,6 +29,12 @@ class SideBar extends StatelessWidget {
               Navigator.pop(context);
               // Điều hướng đến trang History khi chọn mục này
               // Thêm xử lý khi chọn mục History
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => History(),
+                ),
+              );
             },
           ),
           ListTile(
@@ -30,6 +43,12 @@ class SideBar extends StatelessWidget {
               Navigator.pop(context);
               // Điều hướng đến trang Courses khi chọn mục này
               // Thêm xử lý khi chọn mục Courses
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ListCourse(),
+                ),
+              );
             },
           ),
           ListTile(

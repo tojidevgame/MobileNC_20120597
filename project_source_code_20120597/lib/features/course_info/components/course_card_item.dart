@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile_toji/features/lesson_detail/screens/lesson_detail.dart';
 
 class CourseCardItem extends StatefulWidget {
   @override
@@ -14,7 +15,12 @@ class CourseCardItemState extends State<CourseCardItem> {
           style: ButtonStyle(
             padding: MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.all(0)),
           ),
-          onPressed: () {},
+          onPressed: () {Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => LessonDetail(),
+              ),
+            );},
           child: Card(
             child: Column(
               mainAxisSize: MainAxisSize.min,

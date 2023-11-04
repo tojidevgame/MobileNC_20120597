@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile_toji/commons/components/appbar.dart';
 import 'package:lettutor_mobile_toji/commons/components/sidebar.dart';
@@ -36,12 +34,12 @@ class TutorScreenState extends State<TutorScreen> {
 
   void _openDrawer() {
     _scaffoldKey.currentState?.openDrawer();
-    print("Press");
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffoldKey,
         drawer: const SideBar(),
         appBar: CustomAppBar(
           onHamburgerTap: _openDrawer,
