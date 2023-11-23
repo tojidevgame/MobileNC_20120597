@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile_toji/commons/const_var.dart';
 import 'package:lettutor_mobile_toji/features/list_teacher/screens/screen_list_teacher.dart';
+import 'package:lettutor_mobile_toji/features/authen/provider/authprovider.dart';
+import 'package:provider/provider.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return LoginScreenState();
+    return RegisterScreenState();
   }
 }
 
-class LoginScreenState extends State<LoginScreen> {
+class RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
         body: SingleChildScrollView(
       child: Center(
@@ -119,7 +122,7 @@ class LoginScreenState extends State<LoginScreen> {
                         );
                       },
                       child: const Text(
-                        'LOGIN',
+                        'REGISTER',
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     )),
@@ -159,11 +162,13 @@ class LoginScreenState extends State<LoginScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Text('No account? '),
+                    const Text('Already have an account? '),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
                       child: const Text(
-                        'Register',
+                        'Login',
                         style: TextStyle(
                           color: primaryColor,
                         ),

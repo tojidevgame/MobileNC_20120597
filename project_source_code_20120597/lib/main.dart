@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile_toji/features/login/screens/screen_login.dart';
+import 'package:lettutor_mobile_toji/features/authen/provider/authprovider.dart';
+import 'package:lettutor_mobile_toji/features/authen/screens/login_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,12 +13,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'LetTutor',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: LoginScreen());
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AuthProvider>(create: (context) => AuthProvider()),
+      ],
+      child: MaterialApp(
+          title: 'LetTutor',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          home: const LoginScreen()),
+    );
   }
 }
