@@ -16,7 +16,7 @@ class RegisterScreen extends StatefulWidget {
 class RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
-    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    //AuthProvider authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
         body: SingleChildScrollView(
       child: Center(

@@ -1,11 +1,10 @@
-// ignore_for_file: avoid_print
 
 class Tutor {
   String id;
   String name;
   String avatar;
   String introduce;
-  int rate;
+  double rate;
   int numberRate;
   String countryCode;
   String education;
