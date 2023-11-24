@@ -2,6 +2,7 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile_toji/commons/const_var.dart';
 import 'package:lettutor_mobile_toji/features/authen/screens/register_screen.dart';
+import 'package:lettutor_mobile_toji/features/authen/screens/reset_password_screen.dart';
 import 'package:lettutor_mobile_toji/features/list_teacher/screens/screen_list_teacher.dart';
 import 'package:lettutor_mobile_toji/features/authen/provider/authprovider.dart';
 import 'package:provider/provider.dart';
@@ -124,7 +125,14 @@ class LoginScreenState extends State<LoginScreen> {
                 child: Padding(
                     padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ResetPasswordScreen(),
+                          ),
+                        );
+                      },
                       child: const Text(
                         'Forgot password?',
                         style: TextStyle(

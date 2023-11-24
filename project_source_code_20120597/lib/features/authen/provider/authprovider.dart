@@ -37,4 +37,14 @@ class AuthProvider extends ChangeNotifier {
   void register(String username, String password) {
     // Thực hiện đăng ký tài khoản ở đây
   }
+
+  bool resetPassword(String username) {
+    // Thực hiện reset password ở đây
+    if(username == 'admin@gmail.com') {
+      _isLogin = false;
+      notifyListeners();
+      return true;
+    }
+    return false;
+  }
 }
