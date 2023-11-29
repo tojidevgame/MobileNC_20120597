@@ -91,4 +91,29 @@ class ListTutorProvider extends ChangeNotifier {
     sortTutorResult();
     notifyListeners();
   }
+
+  void filterTutorWithCountry(List<String> selectionCountry) {
+    if(selectionCountry.contains('Gia Sư Việt Nam')){
+      _tutors = _testListTutor
+          .where((tutor) => tutor.countryCode == 'VN')
+          .toList();
+      sortTutorResult();
+      notifyListeners();
+    }
+    if(selectionCountry.contains('Gia Sư Nước Ngoài')){
+      _tutors.addAll(_testListTutor
+          .where((tutor) => tutor.countryCode != 'VN')
+          .toList());
+      sortTutorResult();
+      notifyListeners();
+    }
+    if(selectionCountry.contains('Gia Sư Tiếng Anh Bản Ngữ')){
+      _tutors.addAll(_testListTutor
+          .where((tutor) => tutor.countryCode == 'US')
+          .toList());
+      sortTutorResult();
+      notifyListeners();
+      return;
+    }
+  }
 }

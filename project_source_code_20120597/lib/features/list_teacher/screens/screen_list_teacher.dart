@@ -55,6 +55,15 @@ class TutorScreenState extends State<TutorScreen> {
     listTutorProvider.filterTutorWithName(name);
   }
 
+  // function filter tutor with country
+  void filterTutorWithCountry(List<String> selectionCountry) {
+    // filter with this selection 'Gia Sư Nước Ngoài', 'Gia Sư Việt Nam', 'Gia Sư Tiếng Anh Bản Ngữ'
+    // call to ListTutorProvider
+    var listTutorProvider =
+        Provider.of<ListTutorProvider>(context, listen: false);
+    listTutorProvider.filterTutorWithCountry(selectionCountry);
+  }
+
   void _openDrawer() {
     _scaffoldKey.currentState?.openDrawer();
   }
@@ -149,7 +158,9 @@ class TutorScreenState extends State<TutorScreen> {
                               'Gia Sư Việt Nam',
                               'Gia Sư Tiếng Anh Bản Ngữ'
                             ],
-                            onSelectionChanged: (List<String> value) {},
+                            onSelectionChanged: (List<String> value) {
+                              filterTutorWithCountry(value);
+                            },
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
                             ),

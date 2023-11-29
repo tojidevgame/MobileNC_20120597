@@ -52,6 +52,7 @@ class ComboboxMultichoiceState extends State<ComboboxMultichoice> {
                         listOfSelectedItem.add(val);
                       }
                       widget.selectedList(listOfSelectedItem);
+                      widget.onSelectionChanged(listOfSelectedItem);
                       setState(() {});
                     },
                     itemSelected: listOfSelectedItem
