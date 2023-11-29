@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ComboboxMultichoice extends StatefulWidget {
   final String hint;
   final Function(List<String>) selectedList;
   final List<String> listOfStrings;
   final ValueChanged<List<String>> onSelectionChanged;
+  late BoxDecoration decoration = BoxDecoration(border: Border.all(color: Colors.grey), borderRadius: BorderRadius.circular(12));
 
-  const ComboboxMultichoice(
+  ComboboxMultichoice(
       {super.key,
       required this.hint,
       required this.selectedList,
       required this.listOfStrings,
-      required this.onSelectionChanged});
+      required this.onSelectionChanged, decoration});
 
   @override
   State<StatefulWidget> createState() => ComboboxMultichoiceState();
@@ -21,12 +23,12 @@ class ComboboxMultichoiceState extends State<ComboboxMultichoice> {
   List<String> listOfSelectedItem = [];
   String selectedText = "";
 
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 10.0),
-      decoration:
-          BoxDecoration(border: Border.all(color: Colors.grey)),
+      decoration: widget.decoration,
       child: ExpansionTile(
         iconColor: Colors.grey,
         title: Text(

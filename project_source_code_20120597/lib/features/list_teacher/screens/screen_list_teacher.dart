@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile_toji/commons/components/ComboboxMultichoice.dart';
 import 'package:lettutor_mobile_toji/commons/components/appbar.dart';
 import 'package:lettutor_mobile_toji/commons/components/sidebar.dart';
 import 'package:lettutor_mobile_toji/commons/const_var.dart';
-import 'package:lettutor_mobile_toji/commons/models/tutor_model.dart';
 import 'package:lettutor_mobile_toji/features/list_teacher/components/card_english_type.dart';
 import 'package:lettutor_mobile_toji/features/list_teacher/components/item_info_tutor.dart';
 import 'package:lettutor_mobile_toji/features/list_teacher/provider/list_tutor_provider.dart';
@@ -40,11 +40,19 @@ class TutorScreenState extends State<TutorScreen> {
   }
 
   void filterTutorWithSpecialities(List<String> specialities) {
-    if(specialities.contains('Tất cả')) specialities.clear();
+    if (specialities.contains('Tất cả')) specialities.clear();
     // call to ListTutorProvider
     var listTutorProvider =
         Provider.of<ListTutorProvider>(context, listen: false);
     listTutorProvider.filterTutorWithSpecialities(specialities);
+  }
+
+  // function filter tutor with name
+  void filterTutorWithName(String name) {
+    // call to ListTutorProvider
+    var listTutorProvider =
+        Provider.of<ListTutorProvider>(context, listen: false);
+    listTutorProvider.filterTutorWithName(name);
   }
 
   void _openDrawer() {
@@ -107,10 +115,14 @@ class TutorScreenState extends State<TutorScreen> {
                                 fontWeight: FontWeight.bold, fontSize: 20),
                           ),
                         ),
-                        const TextField(
+                        TextField(
+                            onChanged: (value) {
+                              // call to ListTutorProvider
+                              filterTutorWithName(value);
+                            },
                             autocorrect: false,
                             enableSuggestions: false,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               labelStyle: TextStyle(
                                 color: primaryColor,
                               ),
@@ -129,35 +141,17 @@ class TutorScreenState extends State<TutorScreen> {
                             )),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
-                          child: SizedBox(
-                            height: 50,
-                            child: DropdownButtonFormField<String>(
-                              decoration: const InputDecoration(
-                                hintText: 'Chọn quốc tịch gia sư',
-                                contentPadding:
-                                    EdgeInsets.fromLTRB(15, 0, 0, 0),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: primaryColor),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(12)),
-                                    gapPadding: 1),
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(color: primaryColor),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(12)),
-                                    gapPadding: 1),
-                              ),
-                              items: const [
-                                DropdownMenuItem(
-                                    value: '1',
-                                    child: Text('Gia Sư Nước Ngoài')),
-                                DropdownMenuItem(
-                                    value: '2', child: Text('Gia Sư Việt Nam')),
-                                DropdownMenuItem(
-                                    value: '3',
-                                    child: Text('Gia Sư Tiếng Anh Bản Ngữ')),
-                              ],
-                              onChanged: (value) {},
+                          child: ComboboxMultichoice(
+                            hint: 'Chọn quốc tịch gia sư',
+                            selectedList: (List<String> listString) {},
+                            listOfStrings: const [
+                              'Gia Sư Nước Ngoài',
+                              'Gia Sư Việt Nam',
+                              'Gia Sư Tiếng Anh Bản Ngữ'
+                            ],
+                            onSelectionChanged: (List<String> value) {},
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
                             ),
                           ),
                         ),
@@ -179,18 +173,25 @@ class TutorScreenState extends State<TutorScreen> {
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: ElevatedButton(
-                              onPressed: () {  },
-                              style: ButtonStyle(
-                                side: MaterialStateProperty.all<BorderSide>(const BorderSide(color: primaryColor, width: 1)),
-                                backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
+                            onPressed: () {},
+                            style: ButtonStyle(
+                              side: MaterialStateProperty.all<BorderSide>(
+                                  const BorderSide(
+                                      color: primaryColor, width: 1)),
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.white),
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12.0),
                                 ),
                               ),
-                              child: const Text("Đặt lại bộ tìm kiếm", style: TextStyle(color: primaryColor),),
-                              ),
+                            ),
+                            child: const Text(
+                              "Đặt lại bộ tìm kiếm",
+                              style: TextStyle(color: primaryColor),
+                            ),
+                          ),
                         ),
                         const Text(
                           'Recommended tutors',
