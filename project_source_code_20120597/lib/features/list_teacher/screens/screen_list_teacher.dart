@@ -5,6 +5,8 @@ import 'package:lettutor_mobile_toji/commons/const_var.dart';
 import 'package:lettutor_mobile_toji/commons/models/tutor_model.dart';
 import 'package:lettutor_mobile_toji/features/list_teacher/components/card_english_type.dart';
 import 'package:lettutor_mobile_toji/features/list_teacher/components/item_info_tutor.dart';
+import 'package:lettutor_mobile_toji/features/list_teacher/provider/list_tutor_provider.dart';
+import 'package:provider/provider.dart';
 
 class TutorScreen extends StatefulWidget {
   const TutorScreen({Key? key}) : super(key: key);
@@ -32,22 +34,17 @@ class TutorScreenState extends State<TutorScreen> {
     'TOEIC'
   ];
 
-  final List<Tutor> listTutor = [
-    Tutor(id: '1', name: 'Toai', avatar: 'assets/common/img_user.png', introduce: 'introduce', rate: 5, numberRate: 1500, countryCode: 'US', education: 'education', language: ['English'], specialized: ['specialized'], videoPath: 'videoPath', interest: 'interest', teachingExperience: 'teachingExperience', isFavourite: false),
-    Tutor(id: '2', name: 'Toai', avatar: 'assets/common/img_user.png', introduce: 'introduce', rate: 3.7, numberRate: 1500, countryCode: 'US', education: 'education', language: ['English'], specialized: ['specialized'], videoPath: 'videoPath', interest: 'interest', teachingExperience: 'teachingExperience', isFavourite: false),
-  ];
-
   @override
   void initState() {
     super.initState();
-    listTutor.sort((Tutor a, Tutor b) {
-      // compare isFavourite and rate
-      if (a.isFavourite == b.isFavourite) {
-        return b.rate.compareTo(a.rate);
-      } else {
-        return a.isFavourite! ? -1 : 1;
-      }
-    });
+  }
+
+  void filterTutorWithSpecialities(List<String> specialities) {
+    if(specialities.contains('Tất cả')) specialities.clear();
+    // call to ListTutorProvider
+    var listTutorProvider =
+        Provider.of<ListTutorProvider>(context, listen: false);
+    listTutorProvider.filterTutorWithSpecialities(specialities);
   }
 
   void _openDrawer() {
@@ -56,6 +53,7 @@ class TutorScreenState extends State<TutorScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var listTutorProvider = Provider.of<ListTutorProvider>(context);
     return Scaffold(
         key: _scaffoldKey,
         drawer: const SideBar(),
@@ -171,10 +169,28 @@ class TutorScreenState extends State<TutorScreen> {
                             children: cardEnglishTypeData
                                 .map((e) => CardEnglishType(
                                       englishType: e,
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        filterTutorWithSpecialities([e]);
+                                      },
                                     ))
                                 .toList(),
                           ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: ElevatedButton(
+                              onPressed: () {  },
+                              style: ButtonStyle(
+                                side: MaterialStateProperty.all<BorderSide>(const BorderSide(color: primaryColor, width: 1)),
+                                backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                ),
+                              ),
+                              child: const Text("Đặt lại bộ tìm kiếm", style: TextStyle(color: primaryColor),),
+                              ),
                         ),
                         const Text(
                           'Recommended tutors',
@@ -184,7 +200,9 @@ class TutorScreenState extends State<TutorScreen> {
                         Padding(
                           padding: const EdgeInsets.all(1),
                           child: Column(
-                            children: listTutor.map((e) => GeneralInfoTutor(tutor: e)).toList(),
+                            children: listTutorProvider.tutors
+                                .map((e) => GeneralInfoTutor(tutor: e))
+                                .toList(),
                           ),
                         )
                       ],
@@ -195,3 +213,5 @@ class TutorScreenState extends State<TutorScreen> {
         ));
   }
 }
+
+filterTutorWithSpecialities() {}

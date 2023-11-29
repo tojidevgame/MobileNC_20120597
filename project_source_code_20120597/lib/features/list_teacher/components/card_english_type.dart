@@ -27,7 +27,7 @@ class CardEnglishTypeState extends State<CardEnglishType> {
     return SizedBox(
       height: 30,
       child: TextButton(
-          onPressed: () {},
+          onPressed: widget.onPressed,
           style: ButtonStyle(
             padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
               const EdgeInsets.fromLTRB(8, 1, 8, 1), // Padding for the button
