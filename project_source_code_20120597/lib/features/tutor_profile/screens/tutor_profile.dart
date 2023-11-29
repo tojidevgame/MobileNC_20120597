@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile_toji/commons/const_var.dart';
 import 'package:lettutor_mobile_toji/commons/models/tutor_model.dart';
 import 'package:lettutor_mobile_toji/features/tutor_profile/ui_components/options_tutor_profile.dart';
 import 'package:lettutor_mobile_toji/features/tutor_profile/ui_components/specialize_info.dart';
@@ -34,10 +35,14 @@ class TutorProfileState extends State<TutorProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: const Text('Tutor Profile'),
+          backgroundColor: primaryColor,
+        ),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
             child: Padding(
-          padding: const EdgeInsets.fromLTRB(15, 15, 10, 10),
+          padding: const EdgeInsets.fromLTRB(15, 30, 10, 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

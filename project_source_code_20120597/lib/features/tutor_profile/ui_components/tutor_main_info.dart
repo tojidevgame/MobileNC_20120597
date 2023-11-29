@@ -1,5 +1,6 @@
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile_toji/commons/const_var.dart';
 import 'package:lettutor_mobile_toji/commons/models/tutor_model.dart';
 
 class TutorMainInfo extends StatefulWidget {
@@ -109,8 +110,20 @@ class TutorMainInfoState extends State<TutorMainInfo> {
                     ),
                     onPressed: () {
                       isViewMore = !isViewMore;
+                      setState(() {
+                        if (isViewMore) {
+                          txtShortIntroduce = widget.tutor.introduce;
+                        } else {
+                          txtShortIntroduce = widget.tutor.introduce;
+                          if (txtShortIntroduce.length > 100) {
+                            txtShortIntroduce =
+                                txtShortIntroduce.substring(0, 100);
+                            txtShortIntroduce += '...';
+                          }
+                        }
+                      });
                     },
-                    child: Text(isViewMore ? 'Show less' : 'Show more'))
+                    child: Text(isViewMore ? 'Show less' : 'Show more', style: const TextStyle(color: primaryColor),))
               ])
         ],
       ),

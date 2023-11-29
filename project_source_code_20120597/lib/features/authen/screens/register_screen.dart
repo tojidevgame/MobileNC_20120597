@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile_toji/commons/const_var.dart';
 import 'package:lettutor_mobile_toji/features/list_teacher/screens/screen_list_teacher.dart';
-import 'package:lettutor_mobile_toji/features/authen/provider/authprovider.dart';
-import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);

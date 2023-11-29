@@ -37,6 +37,19 @@ class OptionsOnTutorProfileState extends State<OptionsOnTutorProfile> {
           Column(
             children: <Widget>[
               Icon(
+                Icons.star_border_outlined,
+                color: primaryColor,
+                size: 36.0,
+              ),
+              Text(
+                'Review',
+                style: TextStyle(color: primaryColor),
+              ),
+            ],
+          ),
+          Column(
+            children: <Widget>[
+              Icon(
                 Icons.report_outlined,
                 color: primaryColor,
                 size: 36.0,
@@ -45,21 +58,6 @@ class OptionsOnTutorProfileState extends State<OptionsOnTutorProfile> {
                 'Report',
                 style: TextStyle(
                   color: primaryColor,
-                ),
-              ),
-            ],
-          ),
-          Column(
-            children: <Widget>[
-              Icon(
-                Icons.star_border_outlined,
-                color: primaryColor,
-                size: 36.0,
-              ),
-              Text(
-                'Review',
-                style: TextStyle(
-                  color: primaryColor
                 ),
               ),
             ],

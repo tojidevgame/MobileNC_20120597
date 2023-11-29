@@ -1,14 +1,9 @@
-import 'dart:async';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:lettutor_mobile_toji/features/lesson_detail/components/topic_lesson.dart';
 
-import 'package:lettutor_mobile_toji/features/lesson_detail/screens/lesson_pdf_screen.dart';
-
-
 class LessonDetail extends StatefulWidget {
+  const LessonDetail({super.key});
+
   @override
   State<StatefulWidget> createState() => LessonDetailState();
 }
