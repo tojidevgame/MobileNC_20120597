@@ -5,6 +5,7 @@ import 'package:lettutor_mobile_toji/features/tutor_profile/ui_components/option
 import 'package:lettutor_mobile_toji/features/tutor_profile/ui_components/specialize_info.dart';
 import 'package:lettutor_mobile_toji/features/tutor_profile/ui_components/tutor_main_info.dart';
 import 'package:lettutor_mobile_toji/features/tutor_profile/ui_components/video_controller.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class TutorProfile extends StatefulWidget {
   const TutorProfile({Key? key}) : super(key: key);
@@ -27,9 +28,12 @@ class TutorProfileState extends State<TutorProfile> {
       education: 'BA',
       language: ['English', 'Vietnamese'],
       specialized: ['specialized', 'hehe'],
-      videoPath: 'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
-      interest: 'I loved the weather, the scenery and the laid-back lifestyle of the locals.',
-      teachingExperience: 'I have more than 10 years of teaching english experience',
+      videoPath:
+          'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+      interest:
+          'I loved the weather, the scenery and the laid-back lifestyle of the locals.',
+      teachingExperience:
+          'I have more than 10 years of teaching english experience',
       isFavourite: false);
 
   @override
@@ -49,9 +53,55 @@ class TutorProfileState extends State<TutorProfile> {
               TutorMainInfo(tutor: tutorData as Tutor),
               const OptionsOnTutorProfile(),
               VideoPlayerScreen(tutor: tutorData as Tutor),
-              TutorSpecialInfo(tutor: tutorData as Tutor)
+              TutorSpecialInfo(tutor: tutorData as Tutor),
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Xử lý sự kiện khi nút được nhấn
+                        _showCalendarPopup(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            const Color.fromARGB(255, 255, 255, 255),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        side: const BorderSide(color: primaryColor, width: 1.0),
+                      ),
+                      child: const Text(
+                        "Schedule",
+                        style: TextStyle(color: primaryColor),
+                      ),
+                    ),
+                  )
+                ],
+              )
             ],
           ),
         )));
   }
+
+  void _showCalendarPopup(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          child: Container(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SfCalendar(view: CalendarView.day,),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
+  
+
