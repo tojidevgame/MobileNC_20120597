@@ -68,4 +68,9 @@ class TutorProfileProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // favorite tutor
+  void favoriteTutor() {
+    tutor.isFavourite = !tutor.isFavourite;
+    notifyListeners();
+  }
 }

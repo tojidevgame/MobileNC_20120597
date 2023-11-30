@@ -13,7 +13,7 @@ class Tutor {
   String videoPath;
   String interest;
   String teachingExperience;
-  bool? isFavourite;
+  bool isFavourite = false;
 
   Tutor({
     required this.id, 
