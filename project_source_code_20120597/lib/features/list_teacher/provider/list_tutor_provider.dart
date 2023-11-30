@@ -53,7 +53,7 @@ class ListTutorProvider extends ChangeNotifier {
       if (a.isFavourite == b.isFavourite) {
         return b.rate.compareTo(a.rate);
       } else {
-        return a.isFavourite! ? -1 : 1;
+        return a.isFavourite? -1 : 1;
       }
     });
   }

@@ -47,14 +47,18 @@ class OptionsOnTutorProfileState extends State<OptionsOnTutorProfile> {
               ),
             ],
           ),
-          const Column(
+          Column(
             children: <Widget>[
-              Icon(
-                Icons.report_outlined,
-                color: primaryColor,
-                size: 36.0,
-              ),
-              Text(
+              TextButton(
+                  onPressed: () {
+                    _showPopup(context);
+                  },
+                  child: const Icon(
+                    Icons.report_outlined,
+                    color: primaryColor,
+                    size: 36.0,
+                  )),
+              const Text(
                 'Report',
                 style: TextStyle(
                   color: primaryColor,
@@ -94,4 +98,85 @@ Widget getFavouriteIcon(bool isFavourite, VoidCallback onPressed) {
           size: 36.0,
         ));
   }
+}
+
+void _showPopup(BuildContext context) {
+  var textFieldController = TextEditingController();
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Report this tutor'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              'What problem are you facing?',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            CheckboxListTile(
+              contentPadding: EdgeInsets.zero,
+              title: const Text(
+                'This tutor bothers me',
+                style: TextStyle(fontSize: 12),
+              ),
+              value: false,
+              onChanged: (bool? value) {
+                // Handle checkbox state change
+                textFieldController.text += 'This tutor bothers me\n';
+              },
+            ),
+            CheckboxListTile(
+              contentPadding: EdgeInsets.zero,
+              title: const Text(
+                'This profile is fake',
+                style: TextStyle(fontSize: 12),
+              ),
+              value: false,
+              onChanged: (bool? value) {
+                // Handle checkbox state change
+                textFieldController.text += 'This profile is fake\n';
+              },
+            ),
+            CheckboxListTile(
+              contentPadding: EdgeInsets.zero,
+              title: const Text(
+                'Inappropriate profile photo',
+                style: TextStyle(fontSize: 12),
+              ),
+              value: false,
+              onChanged: (bool? value) {
+                // Handle checkbox state change
+                textFieldController.text += 'Inappropriate profile photo\n';
+              },
+            ),
+            TextField(
+              maxLines: 3,
+              style: const TextStyle(fontSize: 12),
+              controller: textFieldController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Enter additional details...',
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text('Cancel'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              // Handle send button press
+              Navigator.pop(context);
+            },
+            child: Text('Send'),
+          ),
+        ],
+      );
+    },
+  );
 }
