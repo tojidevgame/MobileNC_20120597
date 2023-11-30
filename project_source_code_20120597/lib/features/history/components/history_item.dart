@@ -73,7 +73,7 @@ class HistoryItemState extends State<HistoryItem> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Lesson time: 14:30 - 15:25',
                     style: TextStyle(fontSize: 20),
                   ),
@@ -85,9 +85,7 @@ class HistoryItemState extends State<HistoryItem> {
                           InkWell(
                             onTap: () {
                               // Xử lý khi "Requirements for lesson" được ấn
-                              showDialog(
-                                context: context,
-                                builder: (context) {
+                              showDialog(context: context,builder: (context) {
                                   return AlertDialog(
                                     title: Text('Requirements for lesson'),
                                     content: Text('Requirement'),

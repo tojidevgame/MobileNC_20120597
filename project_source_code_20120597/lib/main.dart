@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_mobile_toji/features/authen/provider/authprovider.dart';
 import 'package:lettutor_mobile_toji/features/authen/screens/login_screen.dart';
 import 'package:lettutor_mobile_toji/features/list_teacher/provider/list_tutor_provider.dart';
+import 'package:lettutor_mobile_toji/features/tutor_profile/provider/tutor_profile_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<AuthProvider>(create: (context) => AuthProvider()),
         ChangeNotifierProvider<ListTutorProvider>(create: (context) => ListTutorProvider()),
+        ChangeNotifierProvider<TutorProfileProvider>(create: (context) => TutorProfileProvider()),
       ],
       child: MaterialApp(
           title: 'LetTutor',

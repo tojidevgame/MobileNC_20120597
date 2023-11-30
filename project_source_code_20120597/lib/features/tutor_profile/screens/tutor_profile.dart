@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile_toji/commons/const_var.dart';
 import 'package:lettutor_mobile_toji/commons/models/tutor_model.dart';
+import 'package:lettutor_mobile_toji/features/tutor_profile/provider/tutor_profile_provider.dart';
+import 'package:lettutor_mobile_toji/features/tutor_profile/ui_components/calendar.dart';
 import 'package:lettutor_mobile_toji/features/tutor_profile/ui_components/options_tutor_profile.dart';
 import 'package:lettutor_mobile_toji/features/tutor_profile/ui_components/specialize_info.dart';
 import 'package:lettutor_mobile_toji/features/tutor_profile/ui_components/tutor_main_info.dart';
 import 'package:lettutor_mobile_toji/features/tutor_profile/ui_components/video_controller.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class TutorProfile extends StatefulWidget {
@@ -14,7 +17,10 @@ class TutorProfile extends StatefulWidget {
   State<TutorProfile> createState() => TutorProfileState();
 }
 
-class TutorProfileState extends State<TutorProfile> {
+class TutorProfileState extends State<TutorProfile>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
   bool isLoading = true;
   Tutor? tutorData = Tutor(
       id: '1',
@@ -37,7 +43,14 @@ class TutorProfileState extends State<TutorProfile> {
       isFavourite: false);
 
   @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    var tutorProfileProvider = Provider.of<TutorProfileProvider>(context);
     return Scaffold(
         appBar: AppBar(
           title: const Text('Tutor Profile'),
@@ -54,54 +67,38 @@ class TutorProfileState extends State<TutorProfile> {
               const OptionsOnTutorProfile(),
               VideoPlayerScreen(tutor: tutorData as Tutor),
               TutorSpecialInfo(tutor: tutorData as Tutor),
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Xử lý sự kiện khi nút được nhấn
-                        _showCalendarPopup(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            const Color.fromARGB(255, 255, 255, 255),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        side: const BorderSide(color: primaryColor, width: 1.0),
-                      ),
-                      child: const Text(
-                        "Schedule",
-                        style: TextStyle(color: primaryColor),
+              Container(
+                padding: const EdgeInsets.only(top: 15),
+                child: DefaultTabController(
+                  length: 3,
+                  child: TabBar(controller: _tabController, tabs: const [
+                    Tab(text: 'Schedule'),
+                    Tab(text: 'Review'),
+                  ]),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(top: 15),
+                child: SizedBox(
+                  height: 500,
+                  child: TabBarView(controller: _tabController, children: [
+                    Container(
+                      child: SfCalendar(
+                        dataSource: MeetingDataSource(tutorProfileProvider.schedulings),
+                        view: CalendarView.week,
+                        appointmentBuilder: (context, details) {
+                          return appointmentBuilder(context, details);
+                        },
                       ),
                     ),
-                  )
-                ],
-              )
+                    Container(
+                      child: const Text('Review'),
+                    ),
+                  ]),
+                ),
+              ),
             ],
           ),
         )));
   }
-
-  void _showCalendarPopup(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Dialog(
-          child: Container(
-            padding: EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SfCalendar(view: CalendarView.day,),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
 }
-  
-
