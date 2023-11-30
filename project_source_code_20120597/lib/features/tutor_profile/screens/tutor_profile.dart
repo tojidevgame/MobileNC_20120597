@@ -22,25 +22,6 @@ class TutorProfileState extends State<TutorProfile>
   late TabController _tabController;
 
   bool isLoading = true;
-  Tutor? tutorData = Tutor(
-      id: '1',
-      name: 'Toai',
-      avatar: 'assets/common/img_user.png',
-      introduce:
-          'I am passionate about running and fitness, I often compete in trail/mountain running events and I love pushing myself. I am training to one day take part in ultra-endurance events. I also enjoy watching rugby on the weekends, reading and watching podcasts on Youtube. My most memorable life experience would be living in and traveling around Southeast Asia.',
-      rate: 4.7,
-      numberRate: 2,
-      countryCode: 'US',
-      education: 'BA',
-      language: ['English', 'Vietnamese'],
-      specialized: ['specialized', 'hehe'],
-      videoPath:
-          'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
-      interest:
-          'I loved the weather, the scenery and the laid-back lifestyle of the locals.',
-      teachingExperience:
-          'I have more than 10 years of teaching english experience',
-      isFavourite: false);
 
   @override
   void initState() {
@@ -63,10 +44,10 @@ class TutorProfileState extends State<TutorProfile>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TutorMainInfo(tutor: tutorData as Tutor),
+              TutorMainInfo(tutor: tutorProfileProvider.tutor),
               const OptionsOnTutorProfile(),
-              VideoPlayerScreen(tutor: tutorData as Tutor),
-              TutorSpecialInfo(tutor: tutorData as Tutor),
+              VideoPlayerScreen(tutor: tutorProfileProvider.tutor),
+              TutorSpecialInfo(tutor: tutorProfileProvider.tutor),
               Container(
                 padding: const EdgeInsets.only(top: 15),
                 child: DefaultTabController(
@@ -93,8 +74,18 @@ class TutorProfileState extends State<TutorProfile>
                       ),
                     ),
                     Container(
-                      child: const Text('Review'),
-                    ),
+                        padding: const EdgeInsets.all(10),
+                        child: SingleChildScrollView(
+                            child: Container(
+                          height: 500,
+                          child: ListView.builder(
+                              itemCount:
+                                  tutorProfileProvider.tutor.reviewers.length,
+                              itemBuilder: (context, index) {
+                                return ReviewComponent(tutorProfileProvider
+                                    .tutor.reviewers[index]);
+                              }),
+                        ))),
                   ]),
                 ),
               ),
@@ -108,18 +99,31 @@ class TutorProfileState extends State<TutorProfile>
 // ignore: non_constant_identifier_names
 Widget ReviewComponent(Reviewer reviewer) {
   return Container(
+    padding: const EdgeInsets.only(top: 10),
     child: Row(
       children: [
         Container(
+          height: 50,
+          width: 50,
           child: Image.asset('assets/common/img_user.png'),
         ),
         Container(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Toai'),
-              Text('time'),
               Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Text(reviewer.name),
+                  ),
+                  Container(
+                    child: Text(reviewer.time.toIso8601String().split('.')[0]),
+                  ),
+                ],
+              ),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: List.generate(5, (index) {
                     return GestureDetector(
                       child: Icon(

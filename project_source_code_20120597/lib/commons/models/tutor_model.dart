@@ -15,7 +15,7 @@ class Tutor {
   String teachingExperience;
   bool isFavourite = false;
 
-
+  late List<Reviewer> reviewers;
 
   Tutor({
     required this.id, 
@@ -31,8 +31,13 @@ class Tutor {
     required this.videoPath,
     required this.interest,
     required this.teachingExperience,
-    required this.isFavourite
+    required this.isFavourite,
+    required this.reviewers
   });
+
+  void setReviewers(List<Reviewer> reviewers) {
+    this.reviewers = reviewers;
+  }
 }
 
 class Reviewer {
@@ -41,11 +46,13 @@ class Reviewer {
   String avatar;
   String comment;
   double rate;
+  DateTime time;
 
   Reviewer({
     required this.name,
     required this.avatar,
     required this.comment,
-    required this.rate
+    required this.rate,
+    required this.time
   });
 }

@@ -1,5 +1,3 @@
-
-
 // create class Tutor Profile Provider
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile_toji/commons/models/scheduling_model.dart';
@@ -9,7 +7,7 @@ class TutorProfileProvider extends ChangeNotifier {
   late Tutor tutor;
   late List<Scheduling> schedulings;
 
-  TutorProfileProvider(){
+  TutorProfileProvider() {
     tutor = Tutor(
       id: '1',
       name: 'Toai',
@@ -28,30 +26,84 @@ class TutorProfileProvider extends ChangeNotifier {
           'I loved the weather, the scenery and the laid-back lifestyle of the locals.',
       teachingExperience:
           'I have more than 10 years of teaching english experience',
-      isFavourite: false
+      isFavourite: false,
+      reviewers: [
+        Reviewer(
+            name: 'Toai',
+            avatar: 'assets/common/img_user.png',
+            comment: 'Good',
+            rate: 4.5,
+            time: DateTime.now()),
+        Reviewer(
+            name: 'Toai',
+            avatar: 'assets/common/img_user.png',
+            comment: 'Good',
+            rate: 4.5,
+            time: DateTime.now()),
+        Reviewer(
+            name: 'Toai',
+            avatar: 'assets/common/img_user.png',
+            comment: 'Good',
+            rate: 4.5,
+            time: DateTime.now()),
+        Reviewer(
+            name: 'Toai',
+            avatar: 'assets/common/img_user.png',
+            comment: 'Good',
+            rate: 4.5,
+            time: DateTime.now()),
+        Reviewer(
+            name: 'Toai',
+            avatar: 'assets/common/img_user.png',
+            comment: 'Good',
+            rate: 4.5,
+            time: DateTime.now()),
+        Reviewer(
+            name: 'Toai',
+            avatar: 'assets/common/img_user.png',
+            comment: 'Good',
+            rate: 4.5,
+            time: DateTime.now()),
+        Reviewer(
+            name: 'Toai',
+            avatar: 'assets/common/img_user.png',
+            comment: 'Good',
+            rate: 4.5,
+            time: DateTime.now()),
+        Reviewer(
+            name: 'Toai',
+            avatar: 'assets/common/img_user.png',
+            comment: 'Good',
+            rate: 4.5,
+            time: DateTime.now()),
+        Reviewer(
+            name: 'Toai',
+            avatar: 'assets/common/img_user.png',
+            comment: 'Good',
+            rate: 4.5,
+            time: DateTime.now())
+      ],
     );
     schedulings = [
       Scheduling(
-        timeStart: DateTime.now().subtract(const Duration(hours: 2, days: 1)),
-        timeEnd: DateTime.now().subtract(const Duration(hours: 1, days: 1)),
-        note: "note",
-        price: 1,
-        isBooked: false
-      ),
+          timeStart: DateTime.now().subtract(const Duration(hours: 2, days: 1)),
+          timeEnd: DateTime.now().subtract(const Duration(hours: 1, days: 1)),
+          note: "note",
+          price: 1,
+          isBooked: false),
       Scheduling(
-        timeStart: DateTime.now().subtract(const Duration(hours: 4, days: 2)),
-        timeEnd: DateTime.now().subtract(const Duration(hours: 3, days: 2)),
-        note: "note",
-        price: 1,
-        isBooked: false
-      ),
+          timeStart: DateTime.now().subtract(const Duration(hours: 4, days: 2)),
+          timeEnd: DateTime.now().subtract(const Duration(hours: 3, days: 2)),
+          note: "note",
+          price: 1,
+          isBooked: false),
       Scheduling(
-        timeStart: DateTime.now().subtract(const Duration(hours: 6, days: 2)),
-        timeEnd: DateTime.now().subtract(const Duration(hours: 5, days: 2)),
-        note: "note",
-        price: 1,
-        isBooked: false
-      ),];
+          timeStart: DateTime.now().subtract(const Duration(hours: 6, days: 2)),
+          timeEnd: DateTime.now().subtract(const Duration(hours: 5, days: 2)),
+          note: "note",
+          price: 1,
+          isBooked: false),
+    ];
   }
 
   void setTutor(Tutor tutor) {
@@ -64,7 +116,7 @@ class TutorProfileProvider extends ChangeNotifier {
     // check if schedulings contain scheduling, if true -> change to booked
     if (schedulings.contains(scheduling)) {
       schedulings[schedulings.indexOf(scheduling)].isBooked = true;
-    } 
+    }
     notifyListeners();
   }
 

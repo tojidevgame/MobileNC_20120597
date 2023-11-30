@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_mobile_toji/commons/models/tutor_model.dart';
 
 class ListTutorProvider extends ChangeNotifier {
-
   // constructor for ListTutorProvider
   ListTutorProvider() {
     _tutors = _testListTutor;
@@ -26,7 +25,45 @@ class ListTutorProvider extends ChangeNotifier {
         videoPath: 'videoPath',
         interest: 'interest',
         teachingExperience: 'teachingExperience',
-        isFavourite: false),
+        isFavourite: false,
+        reviewers: [
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now())
+        ]),
     Tutor(
         id: '2',
         name: 'Chinh',
@@ -41,7 +78,57 @@ class ListTutorProvider extends ChangeNotifier {
         videoPath: 'videoPath',
         interest: 'interest',
         teachingExperience: 'teachingExperience',
-        isFavourite: false),
+        isFavourite: false,
+        reviewers: [
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now())
+        ]),
   ];
 
   List<Tutor> _tutors = [];
@@ -53,7 +140,7 @@ class ListTutorProvider extends ChangeNotifier {
       if (a.isFavourite == b.isFavourite) {
         return b.rate.compareTo(a.rate);
       } else {
-        return a.isFavourite? -1 : 1;
+        return a.isFavourite ? -1 : 1;
       }
     });
   }
@@ -93,24 +180,21 @@ class ListTutorProvider extends ChangeNotifier {
   }
 
   void filterTutorWithCountry(List<String> selectionCountry) {
-    if(selectionCountry.contains('Gia Sư Việt Nam')){
-      _tutors = _testListTutor
-          .where((tutor) => tutor.countryCode == 'VN')
-          .toList();
+    if (selectionCountry.contains('Gia Sư Việt Nam')) {
+      _tutors =
+          _testListTutor.where((tutor) => tutor.countryCode == 'VN').toList();
       sortTutorResult();
       notifyListeners();
     }
-    if(selectionCountry.contains('Gia Sư Nước Ngoài')){
-      _tutors.addAll(_testListTutor
-          .where((tutor) => tutor.countryCode != 'VN')
-          .toList());
+    if (selectionCountry.contains('Gia Sư Nước Ngoài')) {
+      _tutors.addAll(
+          _testListTutor.where((tutor) => tutor.countryCode != 'VN').toList());
       sortTutorResult();
       notifyListeners();
     }
-    if(selectionCountry.contains('Gia Sư Tiếng Anh Bản Ngữ')){
-      _tutors.addAll(_testListTutor
-          .where((tutor) => tutor.countryCode == 'US')
-          .toList());
+    if (selectionCountry.contains('Gia Sư Tiếng Anh Bản Ngữ')) {
+      _tutors.addAll(
+          _testListTutor.where((tutor) => tutor.countryCode == 'US').toList());
       sortTutorResult();
       notifyListeners();
       return;
