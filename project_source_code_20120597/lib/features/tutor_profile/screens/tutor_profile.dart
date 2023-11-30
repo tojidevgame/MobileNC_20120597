@@ -84,7 +84,8 @@ class TutorProfileState extends State<TutorProfile>
                   child: TabBarView(controller: _tabController, children: [
                     Container(
                       child: SfCalendar(
-                        dataSource: MeetingDataSource(tutorProfileProvider.schedulings),
+                        dataSource:
+                            MeetingDataSource(tutorProfileProvider.schedulings),
                         view: CalendarView.week,
                         appointmentBuilder: (context, details) {
                           return appointmentBuilder(context, details);
@@ -101,4 +102,40 @@ class TutorProfileState extends State<TutorProfile>
           ),
         )));
   }
+}
+
+// widget line review with avatar, name, time, rate, comment
+// ignore: non_constant_identifier_names
+Widget ReviewComponent(Reviewer reviewer) {
+  return Container(
+    child: Row(
+      children: [
+        Container(
+          child: Image.asset('assets/common/img_user.png'),
+        ),
+        Container(
+          child: Column(
+            children: [
+              Text('Toai'),
+              Text('time'),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(5, (index) {
+                    return GestureDetector(
+                      child: Icon(
+                        Icons.star,
+                        size: 30,
+                        color: index < reviewer.rate
+                            ? Colors.amber
+                            : const Color.fromARGB(255, 78, 78, 78),
+                      ),
+                    );
+                  })),
+              Text('comment'),
+            ],
+          ),
+        )
+      ],
+    ),
+  );
 }

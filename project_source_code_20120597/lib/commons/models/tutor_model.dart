@@ -15,6 +15,8 @@ class Tutor {
   String teachingExperience;
   bool isFavourite = false;
 
+
+
   Tutor({
     required this.id, 
     required this.name,
@@ -30,5 +32,20 @@ class Tutor {
     required this.interest,
     required this.teachingExperience,
     required this.isFavourite
+  });
+}
+
+class Reviewer {
+  // public properties name, string avatar, string comment, double rate
+  String name;
+  String avatar;
+  String comment;
+  double rate;
+
+  Reviewer({
+    required this.name,
+    required this.avatar,
+    required this.comment,
+    required this.rate
   });
 }
