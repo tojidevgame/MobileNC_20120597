@@ -83,15 +83,15 @@ class TutorScreenState extends State<TutorScreen> {
             children: <Widget>[
               SizedBox(
                   width: double.infinity,
-                  height: 200,
+                  height: 220,
                   child: Container(
                     color: primaryColor,
-                    child: const Padding(
-                      padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text(
+                          const Text(
                             'The lesson is about to take place',
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -99,11 +99,26 @@ class TutorScreenState extends State<TutorScreen> {
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold),
                           ),
-                          Text(
+                          const Text(
                             'The total number of hours you have studied is 507 hours and 30 minutes',
                             textAlign: TextAlign.center,
                             style: TextStyle(color: Colors.white, fontSize: 14),
                           ),
+                          Container(
+                            margin: const EdgeInsets.only(left: 25, right: 25),
+                            child: ElevatedButton(
+                                onPressed: () {},
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      margin: const EdgeInsets.only(right: 10),
+                                      child: const Icon(Icons.video_call, color: primaryColor,),
+                                    ),
+                                    const Text("Come in Class", style: TextStyle(color: primaryColor),)
+                                  ],
+                                )),
+                          )
                         ],
                       ),
                     ),
