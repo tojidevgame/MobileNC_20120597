@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile_toji/commons/const_var.dart';
 import 'package:lettutor_mobile_toji/features/history/screens/history.dart';
 import 'package:lettutor_mobile_toji/features/list_course/screens/list_course.dart';
+import 'package:lettutor_mobile_toji/features/profile/screens/profile_screen.dart';
 import 'package:lettutor_mobile_toji/features/schedule_set/screens/screen_schedule_set.dart';
 
 class SideBar extends StatelessWidget {
@@ -12,19 +14,50 @@ class SideBar extends StatelessWidget {
       child: ListView(
         children: [
           ListTile(
-            title: Text('Schedule'),
+            onTap: () {
+              Navigator.pop(context);
+              // Điều hướng đến trang Home khi chọn mục này
+              // Thêm xử lý khi chọn mục Home
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfileScreen(),
+                ),
+              );
+            },
+            title: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    backgroundImage: AssetImage(
+                        'assets/common/img_user.png'), // Thay đổi đường dẫn đến ảnh avatar của bạn
+                    radius: 35,
+                  ),
+                  Text(
+                    'Nguyen Van A',
+                    style: TextStyle(
+                      color: primaryColor,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+          ),
+          ListTile(
+            title: const Text('Schedule'),
             onTap: () {
               Navigator.pop(context);
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ScheduleSet(),
+                  builder: (context) => const ScheduleSet(),
                 ),
               );
             },
           ),
           ListTile(
-            title: Text('History'),
+            title: const Text('History'),
             onTap: () {
               Navigator.pop(context);
               // Điều hướng đến trang History khi chọn mục này
@@ -38,7 +71,7 @@ class SideBar extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('Courses'),
+            title: const Text('Courses'),
             onTap: () {
               Navigator.pop(context);
               // Điều hướng đến trang Courses khi chọn mục này
@@ -52,7 +85,7 @@ class SideBar extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('My Courses'),
+            title: const Text('My Courses'),
             onTap: () {
               Navigator.pop(context);
               // Điều hướng đến trang My Courses khi chọn mục này

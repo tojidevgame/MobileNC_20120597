@@ -31,11 +31,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          CircleAvatar(
-            backgroundImage: AssetImage(
-                'assets/common/img_user.png'), // Thay đổi đường dẫn đến ảnh avatar của bạn
-            radius: 20, // Độ lớn của avatar
-          ),
+          // CircleAvatar(
+          //   backgroundImage: AssetImage(
+          //       'assets/common/img_user.png'), // Thay đổi đường dẫn đến ảnh avatar của bạn
+          //   radius: 20, // Độ lớn của avatar
+          // ),
         ],
       ),
     );

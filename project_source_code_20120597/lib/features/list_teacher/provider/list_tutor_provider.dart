@@ -63,7 +63,14 @@ class ListTutorProvider extends ChangeNotifier {
               comment: 'Good',
               rate: 4.5,
               time: DateTime.now())
-        ]),
+        ],
+        phone: "123456789",
+        email: "gmail",
+        schedule: "null",
+        country: "null",
+        birthday: DateTime.now(),
+        level: "null",
+        wantToLearn: ["null"]),
     Tutor(
         id: '2',
         name: 'Chinh',
@@ -128,7 +135,14 @@ class ListTutorProvider extends ChangeNotifier {
               comment: 'Good',
               rate: 4.5,
               time: DateTime.now())
-        ]),
+        ],
+        phone: "123456789",
+        email: "gmail",
+        schedule: "null",
+        country: "null",
+        birthday: DateTime.now(),
+        level: "null",
+        wantToLearn: ["null"]),
   ];
 
   List<Tutor> _tutors = [];

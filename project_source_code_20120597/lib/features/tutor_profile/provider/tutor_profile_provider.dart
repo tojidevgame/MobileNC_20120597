@@ -9,81 +9,87 @@ class TutorProfileProvider extends ChangeNotifier {
 
   TutorProfileProvider() {
     tutor = Tutor(
-      id: '1',
-      name: 'Toai',
-      avatar: 'assets/common/img_user.png',
-      introduce:
-          'I am passionate about running and fitness, I often compete in trail/mountain running events and I love pushing myself. I am training to one day take part in ultra-endurance events. I also enjoy watching rugby on the weekends, reading and watching podcasts on Youtube. My most memorable life experience would be living in and traveling around Southeast Asia.',
-      rate: 4.7,
-      numberRate: 2,
-      countryCode: 'US',
-      education: 'BA',
-      language: ['English', 'Vietnamese'],
-      specialized: ['specialized', 'hehe'],
-      videoPath:
-          'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
-      interest:
-          'I loved the weather, the scenery and the laid-back lifestyle of the locals.',
-      teachingExperience:
-          'I have more than 10 years of teaching english experience',
-      isFavourite: false,
-      reviewers: [
-        Reviewer(
-            name: 'Toai',
-            avatar: 'assets/common/img_user.png',
-            comment: 'Good',
-            rate: 4.5,
-            time: DateTime.now()),
-        Reviewer(
-            name: 'Toai',
-            avatar: 'assets/common/img_user.png',
-            comment: 'Good',
-            rate: 4.5,
-            time: DateTime.now()),
-        Reviewer(
-            name: 'Toai',
-            avatar: 'assets/common/img_user.png',
-            comment: 'Good',
-            rate: 4.5,
-            time: DateTime.now()),
-        Reviewer(
-            name: 'Toai',
-            avatar: 'assets/common/img_user.png',
-            comment: 'Good',
-            rate: 4.5,
-            time: DateTime.now()),
-        Reviewer(
-            name: 'Toai',
-            avatar: 'assets/common/img_user.png',
-            comment: 'Good',
-            rate: 4.5,
-            time: DateTime.now()),
-        Reviewer(
-            name: 'Toai',
-            avatar: 'assets/common/img_user.png',
-            comment: 'Good',
-            rate: 4.5,
-            time: DateTime.now()),
-        Reviewer(
-            name: 'Toai',
-            avatar: 'assets/common/img_user.png',
-            comment: 'Good',
-            rate: 4.5,
-            time: DateTime.now()),
-        Reviewer(
-            name: 'Toai',
-            avatar: 'assets/common/img_user.png',
-            comment: 'Good',
-            rate: 4.5,
-            time: DateTime.now()),
-        Reviewer(
-            name: 'Toai',
-            avatar: 'assets/common/img_user.png',
-            comment: 'Good',
-            rate: 4.5,
-            time: DateTime.now())
-      ],
-    );
+        id: '1',
+        name: 'Toai',
+        avatar: 'assets/common/img_user.png',
+        introduce:
+            'I am passionate about running and fitness, I often compete in trail/mountain running events and I love pushing myself. I am training to one day take part in ultra-endurance events. I also enjoy watching rugby on the weekends, reading and watching podcasts on Youtube. My most memorable life experience would be living in and traveling around Southeast Asia.',
+        rate: 4.7,
+        numberRate: 2,
+        countryCode: 'US',
+        education: 'BA',
+        language: ['English', 'Vietnamese'],
+        specialized: ['specialized', 'hehe'],
+        videoPath:
+            'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+        interest:
+            'I loved the weather, the scenery and the laid-back lifestyle of the locals.',
+        teachingExperience:
+            'I have more than 10 years of teaching english experience',
+        isFavourite: false,
+        reviewers: [
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now()),
+          Reviewer(
+              name: 'Toai',
+              avatar: 'assets/common/img_user.png',
+              comment: 'Good',
+              rate: 4.5,
+              time: DateTime.now())
+        ],
+        phone: "123456789",
+        email: "gmail",
+        schedule: "null",
+        country: "null",
+        birthday: DateTime.now(),
+        level: "null",
+        wantToLearn: ["null"]);
     schedulings = [
       Scheduling(
           timeStart: DateTime.now().subtract(const Duration(hours: 2, days: 1)),
