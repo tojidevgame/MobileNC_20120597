@@ -33,6 +33,7 @@ dependencies:
   provider: ^6.1.1
   another_flushbar: ^1.12.30
   syncfusion_flutter_calendar: ^21.2.10
+  http: ^1.1.2
 
 
 dev_dependencies:

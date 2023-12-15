@@ -2,35 +2,32 @@
 // auth provider with provider package
 
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile_toji/commons/models/token_models.dart';
+import 'package:lettutor_mobile_toji/commons/models/user_model/user_model.dart';
 
 class AuthProvider extends ChangeNotifier {
-  String? _username;
-  String? _password;
+  late User userLoggedIn;
+  Tokens? tokens;
   
   bool _isLogin = false;
 
-  String? get username => _username;
-  String? get password => _password;
   bool get isLogined => _isLogin;
 
   void setCredentials(String username, String password) {
-    _username = username;
-    _password = password;
+
     notifyListeners();
   }
 
-  void login() {
+  void login(User user, Tokens tokens) {
     // Thực hiện xác thực, kiểm tra username và password ở đây
-    if (_username == 'admin@gmail.com' && _password == 'admin') {
-      _isLogin = true;
-      notifyListeners();
-    }
+    userLoggedIn = user;
+    this.tokens = tokens;
+    _isLogin = true;
+    notifyListeners();
   }
 
   void logout() {
     _isLogin = false;
-    _username = null;
-    _password = null;
     notifyListeners();
   }
 

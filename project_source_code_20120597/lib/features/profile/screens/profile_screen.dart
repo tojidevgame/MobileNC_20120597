@@ -1,7 +1,6 @@
 // class widget show profile of user
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile_toji/commons/const_var.dart';
-import 'package:lettutor_mobile_toji/features/profile/providers/profile_provider.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -24,8 +23,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var userProfileProvider = Provider.of<ProfileProvider>(context);
-    mailController.text = userProfileProvider.userModel.email;
+    // var userProfileProvider = Provider.of<ProfileProvider>(context);
+    // mailController.text = userProfileProvider.userModel.email;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: primaryColor,
@@ -42,9 +41,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 backgroundImage: AssetImage('assets/common/img_user.png'),
               ),
               Container(
-                child: Text(userProfileProvider.userModel.name),
+                // child: Text(userProfileProvider.userModel.name),
               ),
-              Text(userProfileProvider.userModel.id),
+              // Text(userProfileProvider.userModel.id),
               Container(
                   padding: const EdgeInsets.all(0),
                   child: TextButton(

@@ -80,12 +80,14 @@ class GeneralInfoTutorState extends State<GeneralInfoTutor> {
                                     SizedBox(
                                       width: 30,
                                       height: 30,
-                                      child: CountryFlag.fromCountryCode(widget.tutor.countryCode,),
+                                      // child: CountryFlag.fromCountryCode(widget.tutor.countryCode,),
+                                      child: CountryFlag.fromCountryCode("widget.tutor.countryCode,"),
                                     ),
                                     Padding(
                                         padding:
                                             const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                        child: Text(widget.tutor.countryCode))
+                                        // child: Text(widget.tutor.countryCode))
+                                        child: Text("widget.tutor.countryCode"))
                                   ],
                                 ),
                               ),
@@ -99,7 +101,11 @@ class GeneralInfoTutorState extends State<GeneralInfoTutor> {
                                           child: Icon(
                                             Icons.star,
                                             size: 30,
-                                            color: index < widget.tutor.rate.round()
+                                            // color: index < widget.tutor.rate.round()
+                                            //     ? Colors.amber
+                                            //     : const Color.fromARGB(
+                                            //         255, 78, 78, 78),
+                                            color: index < 3
                                                 ? Colors.amber
                                                 : const Color.fromARGB(
                                                     255, 78, 78, 78),
@@ -112,7 +118,13 @@ class GeneralInfoTutorState extends State<GeneralInfoTutor> {
                                   alignment: WrapAlignment.center,
                                   spacing: 5,
                                   runSpacing: 5,
-                                  children: widget.tutor.specialized
+                                  // children: widget.tutor.specialized
+                                  //     .map((e) => CardEnglishType(
+                                  //           englishType: e,
+                                  //           onPressed: () {},
+                                  //         ))
+                                  //     .toList(),
+                                  children: []
                                       .map((e) => CardEnglishType(
                                             englishType: e,
                                             onPressed: () {},

@@ -24,7 +24,9 @@ class OptionsOnTutorProfileState extends State<OptionsOnTutorProfile> {
         children: <Widget>[
           Column(
             children: <Widget>[
-              getFavouriteIcon(tutorProfileProvider.tutor.isFavourite,
+              // getFavouriteIcon(tutorProfileProvider.tutor.isFavourite,
+              //     () => tutorProfileProvider.favoriteTutor()),
+              getFavouriteIcon(false,
                   () => tutorProfileProvider.favoriteTutor()),
               const Text(
                 'Favourite',

@@ -79,11 +79,16 @@ class TutorProfileState extends State<TutorProfile>
                             child: Container(
                           height: 500,
                           child: ListView.builder(
+                              // itemCount:
+                              //     tutorProfileProvider.tutor.reviewers.length,
+                              // itemBuilder: (context, index) {
+                              //   return ReviewComponent(tutorProfileProvider
+                              //       .tutor.reviewers[index]);
+                              // }),
                               itemCount:
-                                  tutorProfileProvider.tutor.reviewers.length,
+                                  5,
                               itemBuilder: (context, index) {
-                                return ReviewComponent(tutorProfileProvider
-                                    .tutor.reviewers[index]);
+                                return ReviewComponent(Reviewer(name: "name", avatar: "avatar", comment: "comment", rate: 4, time: DateTime.now()));
                               }),
                         ))),
                   ]),

@@ -3,26 +3,15 @@
 // class provider for user profile, store UserModel
 import 'package:flutter/material.dart';
 
-import 'package:lettutor_mobile_toji/commons/models/user_model.dart';
+import 'package:lettutor_mobile_toji/commons/models/user_model/user_model.dart';
 
 class ProfileProvider extends ChangeNotifier {
-  late UserModel userModel;
+  late User userModel;
 
   ProfileProvider() {
-    userModel = UserModel(
-        id: '1',
-        name: 'Nguyen Van A',
-        email: '',
-        avatar: '',
-        phone: '',
-        country: '',
-        birthday: DateTime.now(),
-        level: '',
-        wantToLearn: [],
-        schedule: '');
   }
 
-  void updateProfile(UserModel userModel) {
+  void updateProfile(User userModel) {
     this.userModel = userModel;
     notifyListeners();
   }

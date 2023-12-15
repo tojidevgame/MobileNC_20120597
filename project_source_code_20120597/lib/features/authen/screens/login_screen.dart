@@ -5,6 +5,7 @@ import 'package:lettutor_mobile_toji/features/authen/screens/register_screen.dar
 import 'package:lettutor_mobile_toji/features/authen/screens/reset_password_screen.dart';
 import 'package:lettutor_mobile_toji/features/list_teacher/screens/screen_list_teacher.dart';
 import 'package:lettutor_mobile_toji/features/authen/provider/authprovider.dart';
+import 'package:lettutor_mobile_toji/services/authenticate_service.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -48,6 +49,30 @@ class LoginScreenState extends State<LoginScreen> {
       messageSize: 17,
     ).show(context);
   }
+
+
+  handleLogin(AuthProvider authProvider) async{
+    try {
+      await AuthServices.loginWithEmailAndPassword(_inputUsername, _inputPassword, authProvider, (user, tokens, authProvider) {
+        authProvider.login(user, tokens);
+
+        if(authProvider.isLogined) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => TutorScreen(),
+            ),
+          );
+        } else {
+          _showErrorMessage();
+        }
+      });
+    }catch (e){
+      _showErrorMessage();
+      print("login fail: $e");
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -160,19 +185,7 @@ class LoginScreenState extends State<LoginScreen> {
                       ),
                       onPressed: () {
                         getEmailAndPassword();
-                        authProvider.setCredentials(_inputUsername, _inputPassword);
-                        authProvider.login();
-
-                        if (authProvider.isLogined) {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => TutorScreen(),
-                            ),
-                          );
-                        } else {
-                          _showErrorMessage();
-                        }
+                        handleLogin(authProvider);
                       },
                       child: const Text(
                         'LOGIN',

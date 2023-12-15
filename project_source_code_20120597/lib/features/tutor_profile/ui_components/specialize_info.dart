@@ -23,7 +23,7 @@ class TutorSpecialInfoState extends State<TutorSpecialInfo> {
             'Học vấn',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
-          Text(widget.tutor.education),
+          // Text(widget.tutor.education),
           const Padding(
             padding: EdgeInsets.only(top: 15),
             child: Text(
@@ -40,7 +40,13 @@ class TutorSpecialInfoState extends State<TutorSpecialInfo> {
             child: Wrap(
               spacing: 5,
               runSpacing: 5,
-              children: widget.tutor.language
+              // children: widget.tutor.language
+              //     .map((e) => CardEnglishType(
+              //           englishType: e,
+              //           onPressed: () {},
+              //         ))
+              //     .toList(),
+              children: []
                   .map((e) => CardEnglishType(
                         englishType: e,
                         onPressed: () {},
@@ -64,7 +70,13 @@ class TutorSpecialInfoState extends State<TutorSpecialInfo> {
             child: Wrap(
               spacing: 5,
               runSpacing: 5,
-              children: widget.tutor.specialized
+              // children: widget.tutor.specialized
+              //     .map((e) => CardEnglishType(
+              //           englishType: e,
+              //           onPressed: () {},
+              //         ))
+              //     .toList(),
+              children: []
                   .map((e) => CardEnglishType(
                         englishType: e,
                         onPressed: () {},
@@ -84,9 +96,9 @@ class TutorSpecialInfoState extends State<TutorSpecialInfo> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 5),
-            child: Text(
-              widget.tutor.interest,
-            ),
+            // child: Text(
+            //   widget.tutor.interest,
+            // ),
           ),
           const Padding(
             padding: EdgeInsets.only(top: 15),
@@ -101,7 +113,7 @@ class TutorSpecialInfoState extends State<TutorSpecialInfo> {
           Padding(
             padding: const EdgeInsets.only(top: 5),
             child: Text(
-              widget.tutor.teachingExperience,
+              "widget.tutor.teachingExperience,"
             ),
           ),
         ],

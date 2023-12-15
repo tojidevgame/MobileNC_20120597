@@ -21,7 +21,7 @@ class TutorMainInfoState extends State<TutorMainInfo> {
   void initState() {
     super.initState();
 
-    txtShortIntroduce = widget.tutor.introduce;
+    // txtShortIntroduce = widget.tutor.introduce;
     if (txtShortIntroduce.length > 100) {
       txtShortIntroduce = txtShortIntroduce.substring(0, 100);
       txtShortIntroduce += '...';
@@ -59,7 +59,7 @@ class TutorMainInfoState extends State<TutorMainInfo> {
                                 child: Icon(
                                   Icons.star,
                                   size: 30,
-                                  color: index < widget.tutor.rate
+                                  color: index < 5
                                       ? Colors.amber
                                       : const Color.fromARGB(255, 78, 78, 78),
                                 ),
@@ -67,7 +67,7 @@ class TutorMainInfoState extends State<TutorMainInfo> {
                             })),
                         Padding(
                           padding: const EdgeInsets.only(left: 2),
-                          child: Text(widget.tutor.numberRate.toString()),
+                          child: Text("5.0"),
                         ),
                       ],
                     ),
@@ -80,11 +80,11 @@ class TutorMainInfoState extends State<TutorMainInfo> {
                             width: 30,
                             height: 30,
                             child: CountryFlag.fromCountryCode(
-                                widget.tutor.countryCode),
+                                "widget.tutor.countryCode"),
                           ),
                           Padding(
                               padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                              child: Text(widget.tutor.countryCode))
+                              child: Text("widget.tutor.countryCode"))
                         ],
                       ),
                     ),
@@ -96,7 +96,7 @@ class TutorMainInfoState extends State<TutorMainInfo> {
           Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(isViewMore ? widget.tutor.introduce : txtShortIntroduce),
+                // Text(isViewMore ? widget.tutor.introduce : txtShortIntroduce),
                 TextButton(
                     style: ButtonStyle(
                       padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
@@ -112,9 +112,9 @@ class TutorMainInfoState extends State<TutorMainInfo> {
                       isViewMore = !isViewMore;
                       setState(() {
                         if (isViewMore) {
-                          txtShortIntroduce = widget.tutor.introduce;
+                          // txtShortIntroduce = widget.tutor.introduce;
                         } else {
-                          txtShortIntroduce = widget.tutor.introduce;
+                          // txtShortIntroduce = widget.tutor.introduce;
                           if (txtShortIntroduce.length > 100) {
                             txtShortIntroduce =
                                 txtShortIntroduce.substring(0, 100);
