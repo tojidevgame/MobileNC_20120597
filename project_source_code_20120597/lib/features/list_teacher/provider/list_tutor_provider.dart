@@ -1,21 +1,22 @@
 // list tutor provider for list tutor screen
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile_toji/commons/models/tutor_model.dart';
+import 'package:lettutor_mobile_toji/commons/models/tutor_models/tutor_model.dart';
 
 class ListTutorProvider extends ChangeNotifier {
   // constructor for ListTutorProvider
   ListTutorProvider() {
-    _tutors = _testListTutor;
     sortTutorResult();
   }
 
-  // test: original list tutor
-  final List<Tutor> _testListTutor = [
-    
-  ];
-
   List<Tutor> _tutors = [];
   List<Tutor> get tutors => _tutors;
+
+  // public set _tutor
+  set tutors(List<Tutor> tutors) {
+    _tutors = tutors;
+    sortTutorResult();
+    notifyListeners();
+  }
 
   void sortTutorResult() {
     
@@ -23,34 +24,16 @@ class ListTutorProvider extends ChangeNotifier {
 
   // function filter tutor with specialities
   void filterTutorWithSpecialities(List<String> specialities) {
-    if (specialities.isEmpty) {
-      _tutors = _testListTutor;
-      sortTutorResult();
-      notifyListeners();
-      return;
-    }
-
-    // call to ListTutorProvider
-    _tutors = _testListTutor
-        .where((tutor) => []
-            .any((speciality) => specialities.contains(speciality)))
-        .toList();
     sortTutorResult();
     notifyListeners();
   }
 
   void filterTutorWithName(String name) {
     if (name.isEmpty) {
-      _tutors = _testListTutor;
       sortTutorResult();
       notifyListeners();
       return;
     }
-
-    // call to ListTutorProvider
-    _tutors = _testListTutor
-        .where((tutor) => tutor.name.toLowerCase().contains(name.toLowerCase()))
-        .toList();
     sortTutorResult();
     notifyListeners();
   }

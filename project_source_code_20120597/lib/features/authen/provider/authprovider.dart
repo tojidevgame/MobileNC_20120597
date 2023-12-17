@@ -7,7 +7,7 @@ import 'package:lettutor_mobile_toji/commons/models/user_model/user_model.dart';
 
 class AuthProvider extends ChangeNotifier {
   late User userLoggedIn;
-  Tokens? tokens;
+  late Tokens tokens;
   
   bool _isLogin = false;
 

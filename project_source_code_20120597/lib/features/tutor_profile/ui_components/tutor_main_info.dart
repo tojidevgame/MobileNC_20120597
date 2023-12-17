@@ -1,7 +1,7 @@
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile_toji/commons/const_var.dart';
-import 'package:lettutor_mobile_toji/commons/models/tutor_model.dart';
+import 'package:lettutor_mobile_toji/commons/models/tutor_models/tutor_model.dart';
 
 class TutorMainInfo extends StatefulWidget {
   final Tutor tutor;
@@ -39,10 +39,22 @@ class TutorMainInfoState extends State<TutorMainInfo> {
               Padding(
                 padding: const EdgeInsets.all(1),
                 child: SizedBox(
-                  height: 80,
-                  width: 80,
-                  child: Image.asset(widget.tutor.avatar),
-                ),
+                    height: 80,
+                    width: 80,
+                    child: Builder(builder: (context) {
+                      if (widget.tutor.avatar == null) {
+                        return const CircleAvatar(
+                          radius: 40,
+                          backgroundImage:
+                              AssetImage('assets/common/img_user.png'),
+                        );
+                      } else {
+                        return CircleAvatar(
+                          radius: 40,
+                          backgroundImage: NetworkImage(widget.tutor.avatar!),
+                        );
+                      }
+                    })),
               ),
               Padding(
                 padding: const EdgeInsets.all(1),
@@ -123,7 +135,10 @@ class TutorMainInfoState extends State<TutorMainInfo> {
                         }
                       });
                     },
-                    child: Text(isViewMore ? 'Show less' : 'Show more', style: const TextStyle(color: primaryColor),))
+                    child: Text(
+                      isViewMore ? 'Show less' : 'Show more',
+                      style: const TextStyle(color: primaryColor),
+                    ))
               ])
         ],
       ),

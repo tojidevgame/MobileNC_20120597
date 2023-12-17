@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile_toji/commons/models/tutor_model.dart';
+import 'package:lettutor_mobile_toji/commons/models/tutor_models/tutor_model.dart';
 import 'package:video_player/video_player.dart';
 
 // ignore: must_be_immutable

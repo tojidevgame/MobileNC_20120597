@@ -1,6 +1,11 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:lettutor_mobile_toji/commons/const_var.dart';
+import 'package:lettutor_mobile_toji/features/authen/provider/authprovider.dart';
 import 'package:lettutor_mobile_toji/features/list_teacher/screens/screen_list_teacher.dart';
+import 'package:lettutor_mobile_toji/services/authenticate_service.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -12,9 +17,19 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class RegisterScreenState extends State<RegisterScreen> {
+
+  final _controllerUserName = TextEditingController();
+  final _controllerPassword = TextEditingController();
+
+  void handleLogin() async {
+    await AuthServices.registerWithEmailAndPassword(email, password, () => null)
+  }
+
   @override
   Widget build(BuildContext context) {
-    //AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+
     return Scaffold(
         body: SingleChildScrollView(
       child: Center(
@@ -45,17 +60,18 @@ class RegisterScreenState extends State<RegisterScreen> {
                     textAlign: TextAlign.center,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 20, 10, 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 5, 0, 10),
+                      padding: const EdgeInsets.fromLTRB(0, 5, 0, 10),
                       child: TextField(
+                          controller: _controllerUserName,
                           autocorrect: false,
                           enableSuggestions: false,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Email Address',
                             labelStyle: TextStyle(
                               color: primaryColor,
@@ -76,7 +92,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                     ),
                     Padding(
                         padding: EdgeInsets.fromLTRB(0, 5, 0, 10),
-                        child: PasswordTextField())
+                        child: PasswordTextField(controller: _controllerPassword,))
                   ],
                 ),
               ),
@@ -112,12 +128,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => TutorScreen(),
-                          ),
-                        );
+                        
                       },
                       child: const Text(
                         'REGISTER',
@@ -184,7 +195,12 @@ class RegisterScreenState extends State<RegisterScreen> {
 
 /* #region PasswordTextField */
 class PasswordTextField extends StatefulWidget {
-  const PasswordTextField({super.key});
+  TextEditingController controller;
+
+  PasswordTextField({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -203,6 +219,7 @@ class PasswordTextFieldState extends State<PasswordTextField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+        controller: widget.controller,
         obscureText: isObscure,
         enableSuggestions: false,
         decoration: InputDecoration(

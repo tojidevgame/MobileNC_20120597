@@ -1,7 +1,7 @@
 // create class Tutor Profile Provider
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile_toji/commons/models/scheduling_model.dart';
-import 'package:lettutor_mobile_toji/commons/models/tutor_model.dart';
+import 'package:lettutor_mobile_toji/commons/models/tutor_models/tutor_model.dart';
 
 class TutorProfileProvider extends ChangeNotifier {
   late Tutor tutor;

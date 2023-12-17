@@ -1,10 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 
 import 'package:lettutor_mobile_toji/commons/const_var.dart';
-import 'package:lettutor_mobile_toji/commons/models/tutor_model.dart';
+import 'package:lettutor_mobile_toji/commons/models/tutor_models/tutor_model.dart';
 import 'package:lettutor_mobile_toji/features/list_teacher/components/card_english_type.dart';
 import 'package:lettutor_mobile_toji/features/tutor_profile/screens/tutor_profile.dart';
 
@@ -60,7 +61,30 @@ class GeneralInfoTutorState extends State<GeneralInfoTutor> {
                                 child: SizedBox(
                                   height: 80,
                                   width: 80,
-                                  child: Image.asset(widget.tutor.avatar),
+                                  child: CircleAvatar(
+                                    child: Builder(builder: (context){
+                                      if(widget.tutor.avatar == null){
+                                        return const CircleAvatar(
+                                          radius: 40,
+                                          backgroundImage: AssetImage('assets/common/img_user.png'),
+                                        );
+                                      }else{
+                                        return CachedNetworkImage(imageUrl: widget.tutor.avatar!,
+                                          imageBuilder: (context, imageProvider) => Container(
+                                            width: 80.0,
+                                            height: 80.0,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                  image: imageProvider, fit: BoxFit.cover),
+                                            ),
+                                          ),
+                                          placeholder: (context, url) => const CircularProgressIndicator(),
+                                          errorWidget: (context, url, error) => const Icon(Icons.error)
+                                        );
+                                      }
+                                    })
+                                  ),
                                 ),
                               ),
                               Padding(
@@ -81,11 +105,12 @@ class GeneralInfoTutorState extends State<GeneralInfoTutor> {
                                       width: 30,
                                       height: 30,
                                       // child: CountryFlag.fromCountryCode(widget.tutor.countryCode,),
-                                      child: CountryFlag.fromCountryCode("widget.tutor.countryCode,"),
+                                      child: CountryFlag.fromCountryCode(
+                                          "widget.tutor.countryCode,"),
                                     ),
                                     Padding(
-                                        padding:
-                                            const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                        padding: const EdgeInsets.fromLTRB(
+                                            10, 0, 0, 0),
                                         // child: Text(widget.tutor.countryCode))
                                         child: Text("widget.tutor.countryCode"))
                                   ],

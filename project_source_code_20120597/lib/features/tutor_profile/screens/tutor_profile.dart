@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile_toji/commons/const_var.dart';
-import 'package:lettutor_mobile_toji/commons/models/tutor_model.dart';
+import 'package:lettutor_mobile_toji/commons/models/tutor_models/tutor_model.dart';
 import 'package:lettutor_mobile_toji/features/tutor_profile/provider/tutor_profile_provider.dart';
 import 'package:lettutor_mobile_toji/features/tutor_profile/ui_components/calendar.dart';
 import 'package:lettutor_mobile_toji/features/tutor_profile/ui_components/options_tutor_profile.dart';
@@ -88,7 +88,8 @@ class TutorProfileState extends State<TutorProfile>
                               itemCount:
                                   5,
                               itemBuilder: (context, index) {
-                                return ReviewComponent(Reviewer(name: "name", avatar: "avatar", comment: "comment", rate: 4, time: DateTime.now()));
+                                // return ReviewComponent(Feedback(name: "name", avatar: "avatar", comment: "comment", rate: 4, time: DateTime.now()));
+                                return null;
                               }),
                         ))),
                   ]),
@@ -102,7 +103,7 @@ class TutorProfileState extends State<TutorProfile>
 
 // widget line review with avatar, name, time, rate, comment
 // ignore: non_constant_identifier_names
-Widget ReviewComponent(Reviewer reviewer) {
+Widget ReviewComponent(FeedbackModel reviewer) {
   return Container(
     padding: const EdgeInsets.only(top: 10),
     child: Row(
@@ -120,10 +121,10 @@ Widget ReviewComponent(Reviewer reviewer) {
                 children: [
                   Container(
                     padding: const EdgeInsets.only(right: 10),
-                    child: Text(reviewer.name),
+                    child: Text(reviewer.firstInfo.name),
                   ),
                   Container(
-                    child: Text(reviewer.time.toIso8601String().split('.')[0]),
+                    child: Text(reviewer.createdAt),
                   ),
                 ],
               ),
@@ -134,7 +135,7 @@ Widget ReviewComponent(Reviewer reviewer) {
                       child: Icon(
                         Icons.star,
                         size: 30,
-                        color: index < reviewer.rate
+                        color: index < reviewer.rating
                             ? Colors.amber
                             : const Color.fromARGB(255, 78, 78, 78),
                       ),

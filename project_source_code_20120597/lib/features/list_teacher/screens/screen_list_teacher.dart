@@ -3,9 +3,11 @@ import 'package:lettutor_mobile_toji/commons/components/ComboboxMultichoice.dart
 import 'package:lettutor_mobile_toji/commons/components/appbar.dart';
 import 'package:lettutor_mobile_toji/commons/components/sidebar.dart';
 import 'package:lettutor_mobile_toji/commons/const_var.dart';
+import 'package:lettutor_mobile_toji/features/authen/provider/authprovider.dart';
 import 'package:lettutor_mobile_toji/features/list_teacher/components/card_english_type.dart';
 import 'package:lettutor_mobile_toji/features/list_teacher/components/item_info_tutor.dart';
 import 'package:lettutor_mobile_toji/features/list_teacher/provider/list_tutor_provider.dart';
+import 'package:lettutor_mobile_toji/services/tutor_service.dart';
 import 'package:provider/provider.dart';
 
 class TutorScreen extends StatefulWidget {
@@ -34,9 +36,16 @@ class TutorScreenState extends State<TutorScreen> {
     'TOEIC'
   ];
 
+  String? token;
+  int page = 1;
+  int perPage = 10;
+  bool isLoadMore = false;
+  late ScrollController _scrollController;
+  bool _isLoading = true;
   @override
   void initState() {
     super.initState();
+    // _scrollController = ScrollController()..addListener(loadMore());
   }
 
   void filterTutorWithSpecialities(List<String> specialities) {
@@ -68,9 +77,52 @@ class TutorScreenState extends State<TutorScreen> {
     _scaffoldKey.currentState?.openDrawer();
   }
 
+
+  void getListTutorRecommend(String token, ListTutorProvider tutorProvider) async {
+    // call to ListTutorProvider
+    print("Get list tutor recommend");
+    var listTutor = await TutorService.getTutorsWithPagination(page, perPage, token);
+    tutorProvider.tutors = listTutor;
+
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  void loadMore() async {
+    if (_scrollController.position.extentAfter < page * perPage) {
+      setState(() {
+        isLoadMore = true;
+        page++;
+      });
+
+      try {
+        // final response = await TutorService.getTutorsWithPagination(page, perPage, token as String, search: search, specialties: [specialist]);
+        if (mounted) {
+          setState(() {
+            // _results.addAll(response);
+            isLoadMore = false;
+          });
+        }
+      } catch (e) {
+        // showTopSnackBar(context, const CustomSnackBar.error(message: "Cannot load more"),
+        //     showOutAnimationDuration: const Duration(milliseconds: 1000),
+        //     displayDuration: const Duration(microseconds: 4000));
+      }
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     var listTutorProvider = Provider.of<ListTutorProvider>(context);
+    var authProvider = Provider.of<AuthProvider>(context);
+
+    if (_isLoading && authProvider.tokens != null) {
+      getListTutorRecommend(authProvider.tokens.access.token, listTutorProvider);
+    }
     return Scaffold(
         key: _scaffoldKey,
         drawer: const SideBar(),
@@ -78,6 +130,7 @@ class TutorScreenState extends State<TutorScreen> {
           onHamburgerTap: _openDrawer,
         ),
         body: SingleChildScrollView(
+          
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
