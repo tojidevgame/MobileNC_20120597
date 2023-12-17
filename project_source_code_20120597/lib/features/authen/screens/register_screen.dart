@@ -22,7 +22,7 @@ class RegisterScreenState extends State<RegisterScreen> {
   final _controllerPassword = TextEditingController();
 
   void handleLogin() async {
-    await AuthServices.registerWithEmailAndPassword(email, password, () => null)
+    await AuthServices.registerWithEmailAndPassword(_controllerUserName.text, _controllerPassword.text, () => null);
   }
 
   @override
