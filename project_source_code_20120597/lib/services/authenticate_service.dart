@@ -19,7 +19,6 @@ class AuthServices {
         body: {'email': email, 'password': password});
     if (response.statusCode == 200) {
       final jsonDecode = json.decode(response.body);
-      print("Data ${jsonDecode["user"]}");
       final tokens = Tokens.fromJson(jsonDecode["tokens"]);
       final user = User.fromJson(jsonDecode["user"]);
       await callback(user, tokens, authProvider);

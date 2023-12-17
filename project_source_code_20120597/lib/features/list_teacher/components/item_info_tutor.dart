@@ -62,29 +62,47 @@ class GeneralInfoTutorState extends State<GeneralInfoTutor> {
                                   height: 80,
                                   width: 80,
                                   child: CircleAvatar(
-                                    child: Builder(builder: (context){
-                                      if(widget.tutor.avatar == null){
-                                        return const CircleAvatar(
-                                          radius: 40,
-                                          backgroundImage: AssetImage('assets/common/img_user.png'),
-                                        );
-                                      }else{
-                                        return CachedNetworkImage(imageUrl: widget.tutor.avatar!,
-                                          imageBuilder: (context, imageProvider) => Container(
+                                      child: Builder(builder: (context) {
+                                    if (widget.tutor.avatar == null) {
+                                      return const CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage: AssetImage(
+                                            'assets/common/img_user.png'),
+                                      );
+                                    } else {
+                                      try {
+                                        return CachedNetworkImage(
+                                          imageUrl: widget.tutor.avatar!,
+                                          imageBuilder:
+                                              (context, imageProvider) =>
+                                                  Container(
                                             width: 80.0,
                                             height: 80.0,
                                             decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                               image: DecorationImage(
-                                                  image: imageProvider, fit: BoxFit.cover),
+                                                  image: imageProvider,
+                                                  fit: BoxFit.cover),
                                             ),
                                           ),
-                                          placeholder: (context, url) => const CircularProgressIndicator(),
-                                          errorWidget: (context, url, error) => const Icon(Icons.error)
+                                          placeholder: (context, url) =>
+                                              const CircularProgressIndicator(),
+                                          errorWidget: (context, url, error) =>
+                                              const CircleAvatar(
+                                            radius: 40,
+                                            backgroundImage: AssetImage(
+                                                'assets/common/img_user.png'),
+                                          ),
                                         );
+                                      } catch (e) {
+                                        print("error: $e");
+                                        return const CircleAvatar(
+                                            radius: 40,
+                                            backgroundImage: AssetImage(
+                                                'assets/common/img_user.png'));
                                       }
-                                    })
-                                  ),
+                                    }
+                                  })),
                                 ),
                               ),
                               Padding(
@@ -108,9 +126,9 @@ class GeneralInfoTutorState extends State<GeneralInfoTutor> {
                                       child: CountryFlag.fromCountryCode(
                                           "widget.tutor.countryCode,"),
                                     ),
-                                    Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            10, 0, 0, 0),
+                                    const Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(10, 0, 0, 0),
                                         // child: Text(widget.tutor.countryCode))
                                         child: Text("widget.tutor.countryCode"))
                                   ],

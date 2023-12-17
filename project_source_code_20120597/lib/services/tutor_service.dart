@@ -23,4 +23,40 @@ class TutorService {
       throw Exception(jsonDecode['message']);
     }
   }
+
+
+  static Future<List<Tutor>> searchTutor(
+    int page,
+    int perPage,
+    String token, {
+    String search = "",
+    List<String> specialties = const [],
+  }) async {
+    final Map<String, dynamic> args = {
+      "page": page,
+      "perPage": perPage,
+      "search": search,
+      "filters": {
+        "specialties": specialties,
+      },
+    };
+
+    final response = await http.post(
+      Uri.parse("$_baseUrl/tutor/search"),
+      headers: {
+        "Authorization": "Bearer $token",
+        "Content-type": "application/json;encoding=utf-8",
+      },
+      body: json.encode(args),
+    );
+
+    if (response.statusCode == 200) {
+      final jsonRes = json.decode(response.body);
+      final List<dynamic> tutors = jsonRes["rows"];
+      return tutors.map((tutor) => Tutor.fromJson(tutor)).toList();
+    } else {
+      final jsonRes = json.decode(response.body);
+      throw Exception(jsonRes["message"]);
+    }
+  }
 }

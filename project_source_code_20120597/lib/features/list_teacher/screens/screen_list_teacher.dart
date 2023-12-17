@@ -77,17 +77,22 @@ class TutorScreenState extends State<TutorScreen> {
     _scaffoldKey.currentState?.openDrawer();
   }
 
-
-  void getListTutorRecommend(String token, ListTutorProvider tutorProvider) async {
+  void getListTutorRecommend(
+      String token, ListTutorProvider tutorProvider) async {
     // call to ListTutorProvider
-    print("Get list tutor recommend");
-    var listTutor = await TutorService.getTutorsWithPagination(page, perPage, token);
-    tutorProvider.tutors = listTutor;
+    try {
+      print("Get list tutor recommend");
+      var listTutor =
+          await TutorService.getTutorsWithPagination(page, perPage, token);
+      tutorProvider.tutors = listTutor;
 
-    if (mounted) {
-      setState(() {
-        _isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      print("error $e");
     }
   }
 
@@ -114,14 +119,14 @@ class TutorScreenState extends State<TutorScreen> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     var listTutorProvider = Provider.of<ListTutorProvider>(context);
     var authProvider = Provider.of<AuthProvider>(context);
 
     if (_isLoading && authProvider.tokens != null) {
-      getListTutorRecommend(authProvider.tokens.access.token, listTutorProvider);
+      getListTutorRecommend(
+          authProvider.tokens.access.token, listTutorProvider);
     }
     return Scaffold(
         key: _scaffoldKey,
@@ -130,7 +135,6 @@ class TutorScreenState extends State<TutorScreen> {
           onHamburgerTap: _openDrawer,
         ),
         body: SingleChildScrollView(
-          
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -166,9 +170,15 @@ class TutorScreenState extends State<TutorScreen> {
                                   children: [
                                     Container(
                                       margin: const EdgeInsets.only(right: 10),
-                                      child: const Icon(Icons.video_call, color: primaryColor,),
+                                      child: const Icon(
+                                        Icons.video_call,
+                                        color: primaryColor,
+                                      ),
                                     ),
-                                    const Text("Come in Class", style: TextStyle(color: primaryColor),)
+                                    const Text(
+                                      "Come in Class",
+                                      style: TextStyle(color: primaryColor),
+                                    )
                                   ],
                                 )),
                           )
