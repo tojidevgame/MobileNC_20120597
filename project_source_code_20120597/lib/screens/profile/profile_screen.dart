@@ -1,7 +1,6 @@
 // class widget show profile of user
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile_toji/shared/const_var.dart';
-import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

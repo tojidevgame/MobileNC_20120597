@@ -1,10 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
 import 'package:lettutor_mobile_toji/shared/const_var.dart';
-import 'package:lettutor_mobile_toji/providers/authprovider.dart';
-import 'package:lettutor_mobile_toji/screens/list_teacher/screen_list_teacher.dart';
 import 'package:lettutor_mobile_toji/services/authenticate_service.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -27,7 +23,6 @@ class RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
 
     return Scaffold(
@@ -194,6 +189,7 @@ class RegisterScreenState extends State<RegisterScreen> {
 }
 
 /* #region PasswordTextField */
+// ignore: must_be_immutable
 class PasswordTextField extends StatefulWidget {
   TextEditingController controller;
 
