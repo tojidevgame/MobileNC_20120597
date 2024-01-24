@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:lettutor_mobile_toji/commons/models/token_models.dart';
-import 'package:lettutor_mobile_toji/commons/models/user_model/user_model.dart';
+import 'package:lettutor_mobile_toji/models/token_models.dart';
+import 'package:lettutor_mobile_toji/models/user_model.dart';
 
 // create AuthServices class
-import 'package:lettutor_mobile_toji/features/authen/provider/authprovider.dart';
+import 'package:lettutor_mobile_toji/providers/authprovider.dart';
 
 class AuthServices {
   static const String url = 'https://sandbox.api.lettutor.com';

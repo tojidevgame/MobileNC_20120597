@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile_toji/features/authen/provider/authprovider.dart';
-import 'package:lettutor_mobile_toji/features/authen/screens/login_screen.dart';
-import 'package:lettutor_mobile_toji/features/list_teacher/provider/list_tutor_provider.dart';
-import 'package:lettutor_mobile_toji/features/profile/providers/profile_provider.dart';
-import 'package:lettutor_mobile_toji/features/tutor_profile/provider/tutor_profile_provider.dart';
+import 'package:lettutor_mobile_toji/providers/authprovider.dart';
+import 'package:lettutor_mobile_toji/screens/authentication/login_screen.dart';
+import 'package:lettutor_mobile_toji/providers/list_tutor_provider.dart';
+import 'package:lettutor_mobile_toji/providers/profile_provider.dart';
+import 'package:lettutor_mobile_toji/providers/tutor_profile_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -12,7 +12,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+  
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
