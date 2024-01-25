@@ -4,9 +4,9 @@ import 'package:lettutor_mobile_toji/widgets/list_teacher/card_english_type.dart
 
 // ignore: must_be_immutable
 class TutorSpecialInfo extends StatefulWidget {
-  late TutorDetailInfo? tutor;
+  final TutorDetailInfo tutor;
 
-  TutorSpecialInfo({super.key, required this.tutor});
+  const TutorSpecialInfo({super.key, required this.tutor});
   @override
   State<StatefulWidget> createState() => TutorSpecialInfoState();
 }
@@ -40,12 +40,6 @@ class TutorSpecialInfoState extends State<TutorSpecialInfo> {
             child: Wrap(
               spacing: 5,
               runSpacing: 5,
-              // children: widget.tutor.language
-              //     .map((e) => CardEnglishType(
-              //           englishType: e,
-              //           onPressed: () {},
-              //         ))
-              //     .toList(),
               children: []
                   .map((e) => CardEnglishType(
                         englishType: e,

@@ -1,13 +1,13 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, use_build_context_synchronously
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile_toji/models/feed_back.dart';
 import 'package:lettutor_mobile_toji/models/tutor_detail_info_model.dart';
 import 'package:lettutor_mobile_toji/providers/authprovider.dart';
 import 'package:lettutor_mobile_toji/services/tutor_service.dart';
+import 'package:lettutor_mobile_toji/widgets/loading.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-
 import 'package:lettutor_mobile_toji/shared/const_var.dart';
-import 'package:lettutor_mobile_toji/models/tutor_model.dart';
 import 'package:lettutor_mobile_toji/providers/tutor_profile_provider.dart';
 import 'package:lettutor_mobile_toji/widgets/tutor_profile/calendar.dart';
 import 'package:lettutor_mobile_toji/widgets/tutor_profile/options_tutor_profile.dart';
@@ -31,31 +31,30 @@ class TutorProfileState extends State<TutorProfile>
   late TabController _tabController;
 
   bool isLoading = true;
-  late TutorDetailInfo tutor;
+  late TutorDetailInfo tutor = TutorDetailInfo.createDefault();
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    getTutorInfo();
   }
 
   void getTutorInfo() async{
     var authProvider = Provider.of<AuthProvider>(context, listen: false);
     tutor = await TutorService.getTutorById(widget.tutorId, authProvider.tokens.access.token);
-
     var tutorProfileProvider = Provider.of<TutorProfileProvider>(context, listen: false);
     tutorProfileProvider.setTutor(tutor);
+
+    setState(() {
+      isLoading = false;
+    });
   }
-  
+
 
   @override
   Widget build(BuildContext context) {
     var tutorProfileProvider = Provider.of<TutorProfileProvider>(context);
-
-    if(isLoading){
-
-      isLoading = false;
-    }
 
     return Scaffold(
         appBar: AppBar(
@@ -66,13 +65,13 @@ class TutorProfileState extends State<TutorProfile>
         body: SingleChildScrollView(
             child: Padding(
           padding: const EdgeInsets.fromLTRB(15, 30, 10, 10),
-          child: Column(
+          child: isLoading ? const LoadingWidget() : Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TutorMainInfo(tutor: tutorProfileProvider.tutor!),
+              TutorMainInfo(tutor: tutor),
               const OptionsOnTutorProfile(),
-              VideoPlayerScreen(tutor: tutorProfileProvider.tutor!),
-              TutorSpecialInfo(tutor: tutorProfileProvider.tutor),
+              VideoPlayerScreen(tutor: tutor),
+              TutorSpecialInfo(tutor: tutor),
               Container(
                 padding: const EdgeInsets.only(top: 15),
                 child: DefaultTabController(
@@ -128,7 +127,7 @@ class TutorProfileState extends State<TutorProfile>
 
 // widget line review with avatar, name, time, rate, comment
 // ignore: non_constant_identifier_names
-Widget ReviewComponent(FeedbackModel reviewer) {
+Widget ReviewComponent(FeedBackModel reviewer) {
   return Container(
     padding: const EdgeInsets.only(top: 10),
     child: Row(

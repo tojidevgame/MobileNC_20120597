@@ -5,7 +5,7 @@ import 'package:lettutor_mobile_toji/shared/const_var.dart';
 import 'package:lettutor_mobile_toji/models/tutor_detail_info_model.dart';
 
 class TutorMainInfo extends StatefulWidget {
-  final TutorDetailInfo? tutor;
+  final TutorDetailInfo tutor;
 
   const TutorMainInfo({super.key, required this.tutor});
 
@@ -45,7 +45,7 @@ class TutorMainInfoState extends State<TutorMainInfo> {
                     height: 80,
                     width: 80,
                     child: Builder(builder: (context) {
-                      if (widget.tutor?.user.avatar == null) {
+                      if (widget.tutor.user.avatar == null) {
                         return const CircleAvatar(
                           radius: 40,
                           backgroundImage:
@@ -54,7 +54,7 @@ class TutorMainInfoState extends State<TutorMainInfo> {
                       } else {
                         return CircleAvatar(
                           radius: 40,
-                          backgroundImage: NetworkImage(widget.tutor?.user.avatar != null ? widget.tutor!.user.avatar! : 'assets/common/img_user.png'),
+                          backgroundImage: NetworkImage(widget.tutor.user.avatar != null ? widget.tutor.user.avatar! : 'assets/common/img_user.png'),
                         );
                       }
                     })),
@@ -64,7 +64,7 @@ class TutorMainInfoState extends State<TutorMainInfo> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(widget.tutor?.user.name != null ? widget.tutor!.user.name! : 'No name'),
+                    Text(widget.tutor.user.name != null ? widget.tutor.user.name! : 'No name'),
                     Row(
                       children: [
                         Row(
@@ -99,7 +99,7 @@ class TutorMainInfoState extends State<TutorMainInfo> {
                           ),
                         Padding(
                               padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                              child: Text(widget.tutor?.user.country != null ? widget.tutor!.user.country! : 'No country'))
+                              child: Text(widget.tutor.user.country != null ? widget.tutor.user.country! : 'No country'))
                         ],
                       ),
                     ),

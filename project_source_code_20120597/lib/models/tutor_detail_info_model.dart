@@ -60,6 +60,41 @@ class TutorDetailInfo {
       totalFeedback: json['totalFeedback'],
     );
   }
+
+  // method create default data
+  static TutorDetailInfo createDefault() {
+    return TutorDetailInfo(
+      video: '',
+      bio: '',
+      education: '',
+      experience: '',
+      profession: '',
+      accent: '',
+      targetStudent: '',
+      interests: '',
+      languages: '',
+      specialties: '',
+      rating: 0,
+      isNative: false,
+      youtubeVideoId: '',
+      user: User(
+        id: '',
+        level: '',
+        avatar: '',
+        name: '',
+        country: '',
+        language: '',
+        isPublicRecord: false,
+        caredByStaffId: '',
+        zaloUserId: '',
+        studentGroupId: '',
+        courses: [],
+      ),
+      isFavorite: false,
+      avgRating: 0,
+      totalFeedback: 0,
+    );
+  }
 }
 
 class User {
