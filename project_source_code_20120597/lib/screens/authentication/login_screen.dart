@@ -60,7 +60,7 @@ class LoginScreenState extends State<LoginScreen> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => TutorScreen(),
+              builder: (context) => const TutorScreen(),
             ),
           );
         } else {

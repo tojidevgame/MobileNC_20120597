@@ -53,33 +53,33 @@ class TutorScreenState extends State<TutorScreen> {
     _scrollController = ScrollController()..addListener(loadMore);
   }
 
-  void filterTutorWithSpecialities(String token, String search) async {
-    // if (specialities.contains('Tất cả') || search.isEmpty) {
-    //   specialities.clear();
-    //   var listTutorProvider =
-    //       Provider.of<ListTutorProvider>(context, listen: false);
-    //   page = 1;
-    //   getListTutorRecommend(token, listTutorProvider);
-    // } else {
-    //   print("specialities: $specialities");
-    //   try {
-    //     print("specialities: $specialities");
-    //     var searchResult = await TutorService.searchTutor(page, perPage, token,
-    //         search: search, specialties: specialities);
+  void filterTutorWithSpecialities(String token) async {
+    if (specialities.contains('Tất cả')) {
+      specialities.clear();
+      var listTutorProvider =
+          Provider.of<ListTutorProvider>(context, listen: false);
+      page = 1;
+      getListTutorRecommend(token, listTutorProvider);
+    } else {
+      try {
+        print("specialities: $specialities");
+        var searchResult = await TutorService.searchTutor(page, perPage, token, specialties: specialities);
 
-    //     var listTutorProvider =
-    //         Provider.of<ListTutorProvider>(context, listen: false);
-    //     listTutorProvider.tutors = searchResult;
-    //     listTutorProvider.filterTutorWithSpecialities(specialities);
-    //   } catch (e) {
-    //     print("error: $e");
-    //   }
-    //   var listTutorProvider =
-    //       Provider.of<ListTutorProvider>(context, listen: false);
-    //   listTutorProvider.filterTutorWithSpecialities(specialities);
-    // }
+        var listTutorProvider =
+            Provider.of<ListTutorProvider>(context, listen: false);
 
-    // call to ListTutorProvider
+        for (int i = 0; i < searchResult.length; i++) {
+          var tutorDetailInfo = await TutorService.getTutorById(searchResult[i].userId, token);
+          listTutorProvider.tutors.add(tutorDetailInfo);
+        }
+        listTutorProvider.filterTutorWithSpecialities(specialities);
+      } catch (e) {
+        print("error: $e");
+      }
+      var listTutorProvider =
+          Provider.of<ListTutorProvider>(context, listen: false);
+      listTutorProvider.filterTutorWithSpecialities(specialities);
+    }
   }
 
   // function filter tutor with name
@@ -113,16 +113,17 @@ class TutorScreenState extends State<TutorScreen> {
   }
 
   void getListTutorRecommend(
-    String token, ListTutorProvider tutorProvider) async {
+      String token, ListTutorProvider tutorProvider) async {
     try {
       var listTutorRecommend =
           await TutorService.getTutorsWithPagination(page, perPage, token);
 
-      for(int i = 0; i < listTutorRecommend.length; i++){
-        var tutorDetailInfo = await TutorService.getTutorById(listTutorRecommend[i].userId, token);
+      for (int i = 0; i < listTutorRecommend.length; i++) {
+        var tutorDetailInfo = await TutorService.getTutorById(
+            listTutorRecommend[i].userId, token);
         _tutors.add(tutorDetailInfo);
       }
-      
+
       var listTutorProvider =
           Provider.of<ListTutorProvider>(context, listen: false);
       listTutorProvider.tutors = _tutors;
@@ -150,7 +151,8 @@ class TutorScreenState extends State<TutorScreen> {
         var listTutorProvider =
             Provider.of<ListTutorProvider>(context, listen: false);
         var authProvider = Provider.of<AuthProvider>(context, listen: false);
-        getListTutorRecommend(authProvider.tokens.access.token, listTutorProvider);
+        getListTutorRecommend(
+            authProvider.tokens.access.token, listTutorProvider);
       } catch (e) {
         print("Error when loadmore: $e");
       }
@@ -293,9 +295,7 @@ class TutorScreenState extends State<TutorScreen> {
                                       englishType: e,
                                       onPressed: () {
                                         specialities.add(e);
-                                        filterTutorWithSpecialities(
-                                            authProvider.tokens.access.token,
-                                            "");
+                                        filterTutorWithSpecialities(authProvider.tokens.access.token);
                                       },
                                     ))
                                 .toList(),

@@ -111,7 +111,7 @@ class TutorMainInfoState extends State<TutorMainInfo> {
           Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                // Text(isViewMore ? widget.tutor.introduce : txtShortIntroduce),
+                Text(isViewMore ? widget.tutor.bio! : txtShortIntroduce),
                 TextButton(
                     style: ButtonStyle(
                       padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
@@ -127,9 +127,9 @@ class TutorMainInfoState extends State<TutorMainInfo> {
                       isViewMore = !isViewMore;
                       setState(() {
                         if (isViewMore) {
-                          // txtShortIntroduce = widget.tutor.introduce;
+                          txtShortIntroduce = widget.tutor.bio!;
                         } else {
-                          // txtShortIntroduce = widget.tutor.introduce;
+                          txtShortIntroduce = widget.tutor.bio!;
                           if (txtShortIntroduce.length > 100) {
                             txtShortIntroduce =
                                 txtShortIntroduce.substring(0, 100);

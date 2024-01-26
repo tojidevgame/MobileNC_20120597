@@ -10,7 +10,7 @@ class TutorDetailInfo {
   String? targetStudent;
   String? interests;
   String? languages;
-  String? specialties;
+  List<String> specialties;
   double? rating;
   bool? isNative;
   String? youtubeVideoId;
@@ -50,7 +50,7 @@ class TutorDetailInfo {
       targetStudent: json['targetStudent'],
       interests: json['interests'],
       languages: json['languages'],
-      specialties: json['specialties'],
+      specialties: json['specialties'].toString().split(","),
       rating: json['rating']?.toDouble(),
       isNative: json['isNative'],
       youtubeVideoId: json['youtubeVideoId'],
@@ -73,7 +73,7 @@ class TutorDetailInfo {
       targetStudent: '',
       interests: '',
       languages: '',
-      specialties: '',
+      specialties: [],
       rating: 0,
       isNative: false,
       youtubeVideoId: '',
