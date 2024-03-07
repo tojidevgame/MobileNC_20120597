@@ -68,48 +68,7 @@ Widget appointmentBuilder(BuildContext context,
 }
 
 // ignore: non_constant_identifier_names
-Widget BookDialog(Scheduling scheduling, BuildContext context) {
-  var tutorProfileProvider = Provider.of<TutorProfileProvider>(context);
-  return Dialog(
-    child: Container(
-      height: 400,
-      padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
-      // title, time book,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            "Scheduling Details",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          Container(
-              padding: const EdgeInsets.all(5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Schedule time",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  // Text time start and time end from scheduling
-                  Text(
-                      "${scheduling.timeStart.hour}:${scheduling.timeStart.minute} - ${scheduling.timeEnd.hour}:${scheduling.timeEnd.minute} ${scheduling.timeStart.day}/${scheduling.timeStart.month}/${scheduling.timeStart.year}"),
-                ],
-              )),
-          Container(
-            padding: const EdgeInsets.only(top: 10, bottom: 10),
-            child: Column(
-              children: [
-                Container(
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Surplus",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      // Text note from scheduling
-                      Text("9612"),
+                      Text("${scheduling.surplus}"),
                     ],
                   ),
                 ),
@@ -180,7 +139,7 @@ Widget BookDialog(Scheduling scheduling, BuildContext context) {
                     padding: const EdgeInsets.all(0.0),
                   ),
                   child: const Text(
-                    "Book",
+                    "Book Now",
                     style: TextStyle(fontSize: 10, color: Colors.white),
                   ),
                 ),
