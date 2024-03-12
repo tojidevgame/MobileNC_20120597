@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile_toji/features/course_info/screens/course_info.dart';
-import 'package:lettutor_mobile_toji/features/history/screens/history.dart';
-import 'package:lettutor_mobile_toji/features/lesson_detail/screens/lesson_detail.dart';
-import 'package:lettutor_mobile_toji/features/list_course/screens/list_course.dart';
-import 'package:lettutor_mobile_toji/features/login/screens/screen_login.dart';
-import 'package:lettutor_mobile_toji/features/schedule_set/screens/screen_schedule_set.dart';
-import 'package:lettutor_mobile_toji/features/tutor_profile/screens/tutor_profile.dart';
+import 'package:lettutor_mobile_toji/providers/authprovider.dart';
+import 'package:lettutor_mobile_toji/screens/authentication/login_screen.dart';
+import 'package:lettutor_mobile_toji/providers/list_tutor_provider.dart';
+import 'package:lettutor_mobile_toji/providers/profile_provider.dart';
+import 'package:lettutor_mobile_toji/providers/tutor_profile_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,16 +12,24 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+  
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'LetTutor',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: LoginScreen());
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AuthProvider>(create: (context) => AuthProvider()),
+        ChangeNotifierProvider<ListTutorProvider>(create: (context) => ListTutorProvider()),
+        ChangeNotifierProvider<TutorProfileProvider>(create: (context) => TutorProfileProvider()),
+        ChangeNotifierProvider<ProfileProvider>(create: (context) => ProfileProvider())
+      ],
+      child: MaterialApp(
+          title: 'LetTutor',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          home: const LoginScreen()),
+    );
   }
 }
